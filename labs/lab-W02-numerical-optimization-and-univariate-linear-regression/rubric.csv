@@ -1,0 +1,13 @@
+Criteria,Excellent,Good,Acceptable,Needs Improvement,Poor,Un-acceptable,Fraction
+"Rendering: (student uploaded correct file format,plots render correctly in speed-grader, all outputs visible)",100%,90%,80%,70%,60%,0%,0.1
+"assignment-1: Single variable secant method (Correct Newton's method & derivatives)",100%,90%,80%,70%,60%,0%,0.1
+"assignment-2: Describe (Clear, correct explanation of the SciPy code cell)",100%,90%,80%,70%,60%,0%,0.05
+"assignment-3: Visualize objective (Proper 2D surface plot, labeled axes)",100%,90%,80%,70%,60%,0%,0.1
+"assignment-4: Multi-variable gradient descent (Generalized code for any NDIM)",100%,90%,80%,70%,60%,0%,0.2
+"assignment-5: Plot the parity plot (Training & test data, accurate line of best fit)",100%,90%,80%,70%,60%,0%,0.1
+"assignment-6: Pearson correlation from scratch (Correct formula, matches numpy)",100%,90%,80%,70%,60%,0%,0.05
+"assignment-7: Discussion (Two thoughtful questions about the material)",100%,90%,80%,70%,60%,0%,0.1
+"Correctness & completeness (No code errors, correct numbers produced throughout the notebook, logically consistent results)",100%,90%,80%,70%,60%,0%,0.1
+"Overall clarity & organization (Neat submission, good naming conventions, easy to follow with minimal confusion)",100%,90%,80%,70%,60%,0%,0.1
+
+
