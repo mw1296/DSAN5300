@@ -1,0 +1,11 @@
+Criteria,Description,Excellent,Good,Acceptable,Needs Improvement,Poor,Un-acceptable,Fraction
+"Submission Completeness: All required sections are completed with thorough explanations and code implementations",100%,90%,80%,70%,60%,0%,0.1
+"Code Execution: All provided code runs without errors and produces expected results",100%,90%,80%,70%,60%,0%,0.1
+"Data Loading: Data is loaded correctly and efficiently using appropriate methods",100%,90%,80%,70%,60%,0%,0.1
+"Data Visualization: Clear and informative visualizations are created to explore data trends",100%,90%,80%,70%,60%,0%,0.1
+"Curve Fitting Implementation: Sigmoid function and optimization are correctly implemented with proper parameter choices",100%,90%,80%,70%,60%,0%,0.1
+"Logistic Regression Implementation: Logistic regression model is correctly implemented and results are analyzed",100%,90%,80%,70%,60%,0%,0.1
+"Hyperparameter Tuning: Regularization strength is appropriately selected and justified",100%,90%,80%,70%,60%,0%,0.1
+"Model Evaluation: Model performance metrics are correctly computed and interpreted",100%,90%,80%,70%,60%,0%,0.1
+"Report and Interpretation: Results are well-explained with appropriate interpretation and insights",100%,90%,80%,70%,60%,0%,0.1
+"Code Documentation & Readability: Code is well-documented with meaningful comments and clear structure",100%,90%,80%,70%,60%,0%,0.1
