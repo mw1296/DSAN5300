@@ -1,0 +1,7 @@
+Criteria,Excellent,Good,Acceptable,Needs Improvement,Poor,Un-acceptable,Fraction
+"Analytical Derivations: The student correctly and clearly derives the univariate (and optionally multivariate) least squares solution, showing all steps and reasoning.",100%,90%,80%,70%,60%,0%,0.15
+"Numerical Implementation of Vector Regression: Code for vector regression is correct, general, and produces outputs matching expected results. Includes matrix formulation and loss evaluation.",100%,90%,80%,70%,60%,0%,0.2
+"Optimizer Implementation & Usage: Gradient descent and/or SciPy minimizer is correctly implemented, used effectively, and validated against simple test functions.",100%,90%,80%,70%,60%,0%,0.2
+"MPG Dataset Regression: Student processes real-world data correctly, selects appropriate features, applies normalization, fits model, and evaluates/visualizes predictions.",100%,90%,80%,70%,60%,0%,0.2
+"Code Quality & Documentation: Code is clean, well-commented, follows logical structure, and uses meaningful variable names. Plots and figures are clear and informative.",100%,90%,80%,70%,60%,0%,0.15
+"Submission Format & Completeness: All parts of the assignment are complete, outputs visible, no code errors, submitted as PDF/HTML as instructed.",100%,90%,80%,70%,60%,0%,0.1
