@@ -1,0 +1,67 @@
+---
+title: "Group Meeting Notes"
+author: ""
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    code-fold: false
+execute:
+  echo: false
+---
+
+### Meeting1
+Date: 02-17-2026
+
+0. study topics candiates
+* topic1: super bowl commercial success prediction
+https://corgis-edu.github.io/corgis/csv/super_bowl_ads/?utm_source=chatgpt.com
+https://www.stat.cmu.edu/capstoneresearch/315files_s25/team7.html
+https://admeter.usatoday.com/2026/the-choice
+https://www.superbowl-ads.com/2026-ads-video/
+
+
+* topic2: predict the chance of getting diet-related diseases (and disease classification) from unrecommended food list from RFK jr. 2025-2030 diet guidance
+ - ultra-processed food vs. cancer / abnormal biomarkers in the lab work
+ - does eating refined grains vs. eating whole grains make a different on the health
+ - types of oil intake and disease
+* topic2 data:
+https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Dietary&Cycle=2021-2023
+* topic2 researches:
+https://www.proquest.com/docview/3162427899?accountid=11091&parentSessionId=ZtN%2Fs8Saq%2BdA3H5BrhAt1p1KIqYGZD%2F879mN4hFCx%2F4%3D&pq-origsite=primo&sourcetype=Scholarly%20Journals
+
+https://pmc.ncbi.nlm.nih.gov/articles/PMC11961423/
+
+* topic3: Modeling Payment Compliance in Buy Now, Pay Later Services with Logistic Regression
+* topic3 data:
+https://www.kaggle.com/datasets/bhanageviraj/buy-now-pay-later-bnpl-dataset?select=bnpl_dataset_v2.csv
+
+1. Discussions
+
+ Topic 1
+
+ Topic 2
+
+ Topic 3
+
+2. Decisions
+
+Decision 1:
+
+Decision 2:
+
+Decision 3:
+
+3. Action Items
+
+Task	Responsible	Deadline	Status
+Task 1	Name	Date	☐
+Task 2	Name	Date	☐
+Task 3	Name	Date	☐
+
+4. Questions for Instructor / TA
+
+5. Plan for Next Meeting
+Next Meeting Date:
+Goals before next meeting:
