@@ -5,8 +5,8 @@ This project investigates **[problem statement]** using regression and classific
 
 ## Data
 The analysis uses data from the following sources:
-- **Dataset 1**: Description, time period, number of observations
-- **Dataset 2**: Description (if applicable)
+- **Dataset 1**:
+- **Dataset 2**:
 
 Key features include:
 - [Feature 1]
@@ -22,11 +22,12 @@ We apply several statistical learning models, including:
 - Linear regression
 - Logistic regression
 - SVM
-- Deep Learning
+-
 
 Model performance is evaluated using:
 - RMSE and R² (regression)
 - Accuracy and ROC-AUC (classification)
+-
 
 ## Results
 Key findings include:
@@ -39,8 +40,8 @@ These results suggest that **[interpretation]**.
 ## Repository Structure
 ```text
 ├── data/               # Raw and processed datasets
-├── notebooks/          # Exploratory analysis and modeling notebooks
-├── src/                # Reusable Python scripts
-├── final_project.qmd   # Quarto report
+├── image/              # Plots and images
+├── src/                # Code
+├── final_project.qmd    # Quarto report
 ├── references.bib      # Bibliography file
 ├── README.md           # Project documentation
