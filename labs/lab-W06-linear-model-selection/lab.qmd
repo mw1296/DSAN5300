@@ -1,0 +1,721 @@
+---
+format:
+  html:
+    embed-resources: true
+title: 'Lab: Linear Model Selection'
+jupyter: ir
+---
+
+**Instructions**
+
+* Read and complete all exercises below in the provided `.qmd` notebook (or `.ipynb` file if you prefer, both files are identical aside from the formatting)
+
+**Submission:**
+
+* You need to upload ONE document to Canvas when you are done. 
+* A PDF (or HTML) of the completed form of this notebook
+* The final uploaded version should NOT have any code-errors present. 
+* All outputs must be visible in the uploaded version, including code-cell outputs, images, graphs, etc
+
+**Optional**: 
+
+* If you prefer, you can work in `R` inside VS-code using the `.ipynb` format
+* Its quite easy to get working: [click here for instructions](https://www.practicaldatascience.org/html/jupyter_r_notebooks.html)
+* There are a few benefits to this 
+  * (1) You can work 100% in VS-Code (for both R and Python), no need to switch between VSC and R-studio
+  * (2) You can work through your cells one at a time and see the incremental progress, similar to using `.ipynb` with python or `rmd` in R-studio.
+* With Quarto's `convert` command, you can re-format and jump between the different file-formats. For example, 
+* `quarto convert filename.rmd` will convert the file to `filename.ipynb`
+* `quarto convert filename.ipynb` will convert the file to `filename.qmd`, which can be renamed `filename.rmd` or just opened in R-studio like any other `rmd` file, just like normal.
+* `quarto render filename.ipynb` will render the notebook (either R or Python) into an aesthetically pleasing output.
+
+# Part-1: Demonstration
+
+## Model Selection Using Best Subset Selection and Cross-Validation
+
+In this assignment, you will apply **Best Subset Selection** to the `Hitters` dataset from the `ISLR` package using the `regsubsets()` function from the `leaps` package. You will evaluate competing linear regression models using multiple model selection criteria and compare training-based metrics with cross-validation results.
+
+You are expected to write clean, reproducible code and provide clear statistical interpretation of your findings.
+
+## Dataset
+
+You will work with the **Hitters** dataset from the `ISLR` package.
+
+* Response variable: `Salary`
+* Predictors: All remaining variables
+* Missing values: You must properly handle missing data before fitting models.
+
+
+
+```{r}
+#| vscode: {languageId: r}
+# IMPORT LIBRARIES
+library(ISLR)
+library(leaps)
+library(tidyverse)
+library(caret)
+```
+
+## Example: Hitters
+
+`Example from textbook`
+
+```{r}
+#| vscode: {languageId: r}
+# GET DATA 
+data(Hitters)
+
+# EXPLORE DATA 
+print(head(Hitters))
+```
+
+```{r}
+#| vscode: {languageId: r}
+# EXPLORE MORE
+print(dim(Hitters))
+print(class(Hitters))
+print(colnames(Hitters))
+```
+
+```{r}
+#| vscode: {languageId: r}
+# STATISTICAL SUMMARY
+summary(Hitters)
+```
+
+Check if data-frame has missing values 
+
+```{r}
+#| vscode: {languageId: r}
+print(c("CHECK NUMBER OF NA:",with(Hitters, sum(is.na(Hitters)))))
+```
+
+Visualize missing values
+
+```{r}
+#| vscode: {languageId: r}
+library(naniar)
+vis_miss(Hitters)
+```
+
+Notice how the graph shows that all missing values are in the Salary column 
+
+```{r}
+#| vscode: {languageId: r}
+print(c("CHECK NUMBER OF NA:",with(Hitters, sum(is.na(Hitters$Salary)))))
+```
+
+Remove missing values
+
+```{r}
+#| vscode: {languageId: r}
+# remove rows with missing data
+print(c("BEFORE",dim(Hitters)))
+Hitters=na.omit(Hitters)
+print(c("AFTER",dim(Hitters)))
+```
+
+```{r}
+#| vscode: {languageId: r}
+print(c("CHECK NUMBER OF NA:",with(Hitters, sum(is.na(Hitters$Salary)))))
+```
+
+### Best subset selection
+
+Best subset selection is a method in statistics where all possible combinations of predictors are evaluated to identify the subset of predictors that best fits a model. It aims to find the most predictive variables while minimizing model complexity.
+
+`Recall the algorithm`
+
+1. Let $\mathcal{M}_0$ denote the null model, which contains no predictors. 
+2. This model simply predicts the sample mean for each observation.
+3. For $k=1,2, \ldots p$ :
+   1. (a) Fit all $\left(\begin{array}{l}p \\ k\end{array}\right)$ models that contain exactly $k$ predictors.
+   2. (b) Pick the best among these $\left(\begin{array}{l}p \\ k\end{array}\right)$ models, and call it $\mathcal{M}_k$. Here best is defined as having the smallest RSS, or equivalently largest $R^2$.
+4. Select a single best model from among $\mathcal{M}_0, \ldots, \mathcal{M}_p$ using cross-validated prediction error, $C_p$ (AIC), BIC, or adjusted $R^2$.
+5. 
+
+In R, `regsubsets` is a function provided by the `leaps` package. It performs an exhaustive search of the best subsets of predictors for linear regression models. `regsubsets` generates models for all possible combinations of predictors and evaluates them based on a specified criterion (such as adjusted R-squared or Cp) to determine the best subset of predictors for the regression model.
+
+```{r}
+#| vscode: {languageId: r}
+# RUN THE BEST SUBSET SELECTION ALGORITHM USING regsubsets
+# USE Y=SALARY X=Everything else
+
+# This code performs best subset selection for a linear regression model using the regsubsets function on the Hitters dataset, with Salary as the dependent variable and all other variables (.) as potential predictors. It computes various models with different subsets of predictors to determine the best-fitting model.e
+
+regfit.full=regsubsets(Salary~.,Hitters)
+```
+
+```{r}
+#| vscode: {languageId: r}
+#THE FUNCTION SUMMARY() REPORTS THE BEST SET OF VARIABLES FOR EACH MODEL SIZE.
+summary(regfit.full)
+```
+
+Looks like it only goes up-to 8 best variables (i.e. the default for nvmax is 8).
+
+Let's try all 19 variables, by adjusting nvmax.
+
+```{r}
+#| vscode: {languageId: r}
+# RUN THE BEST SUBSET SELECTION ALGORITHM USING regsubsets
+# IN OUR EXAMPLE, WE HAVE N PREDICTOR VARIABLES IN THE DATA. SO, WE'LL USE NVMAX = N .
+regfit.full=regsubsets(Salary~.,data=Hitters,nvmax=19)
+# print(regfit.full)
+```
+
+```{r}
+#| vscode: {languageId: r}
+# PRINT RESULTS
+reg.summary=summary(regfit.full)
+print(class(reg.summary))
+print(reg.summary)
+```
+
+We can extract the linear fitting parameters, from the OLS fit, for the optimal subset for the different feature sub-set sizes
+
+```{r}
+#| vscode: {languageId: r}
+coef(regfit.full,1)
+coef(regfit.full,2)
+coef(regfit.full,19)
+```
+
+```{r}
+#| vscode: {languageId: r}
+# LOOK AT AVAILABLE QUANTITIES
+print(names(reg.summary))
+```
+
+```{r}
+#| vscode: {languageId: r}
+# PRINT R^2 FOR THE 19 SUBSETS
+print(length(reg.summary$rsq))
+print(reg.summary$rsq)
+# print(reg.summary$rsq[1])
+```
+
+Recall: Adjusted $R^2$ is a modified version of $R^2$ that penalizes model complexity by adjusting for the number of predictors.
+
+```{r}
+#| vscode: {languageId: r}
+# print(summary(regfit.full)$adjr2)
+# PRINT ADJUSTED R^2 FOR THE 19 SUBSETS
+print(reg.summary$adjr2)
+print(c("SUBSET WITH MAXIMUM adjr2=",which.max(reg.summary$adjr2)))
+```
+
+```{r}
+#| vscode: {languageId: r}
+# VISUALIZE adjr2 FOR ALL 19 SUBSETS (COLOR=adjr2)(TOP ROW=BEST)
+# FEATURE SUBSETS CHOICES SHOWN ON X
+
+# The code creates a plot of the adjusted R-squared values against the number of predictors for models generated by the regfit.full object. It helps visualize how the adjusted R-squared changes as more predictors are added to the model, providing insight into the model's complexity and explanatory power.
+
+plot(regfit.full,scale="adjr2")
+```
+
+We can plot the various metrics, e.g. adjr2 as a function of the subset size. In an attempt to determine the optimal feature subset size
+
+```{r}
+#| vscode: {languageId: r}
+# GENERATE PLOT SHOWING adjr2 MAX
+
+# Define Sub-Plots: Divides the plotting area into two sections arranged in one row and two columns (mfrow=c(1,2)), allowing for side-by-side comparison.
+par(mfrow=c(1,2))
+
+# Get Max M: Identifies the index (m) of the maximum adjusted R-squared value (adjr2) in the reg.summary object.
+m=which.max(reg.summary$adjr2); 
+print(c("optimal feature subset-size according to adjr2:",m))
+
+# Plot RSS: Draws a line plot of the residual sum of squares (RSS) against the number of variables.
+plot(reg.summary$rss,xlab="Number of Variables",ylab="RSS",type="l")
+points(m,reg.summary$rss[m], col="red",cex=2,pch=20)
+plot(reg.summary$adjr2,xlab="Number of Variables",ylab="Adjusted RSq",type="l")
+points(m,reg.summary$adjr2[m], col="red",cex=2,pch=20)
+points(m,reg.summary$rss[m], col="red")
+```
+
+Alternatively we can also 
+
+```{r}
+#| vscode: {languageId: r}
+# PLOT MIN CP POINT
+plot(reg.summary$cp,xlab="Number of Variables",ylab="Cp",type='l')
+m=which.min(reg.summary$cp)
+print(c("optimal feature subset-size according to cp:",m))
+points(m,reg.summary$cp[10],col="red",cex=2,pch=20)
+```
+
+```{r}
+#| vscode: {languageId: r}
+# PLOT MIN BIC POINT
+m=which.min(reg.summary$bic)
+print(c("optimal feature subset-size according to BIC:",m))
+plot(reg.summary$bic,xlab="Number of Variables",ylab="BIC",type='l')
+points(m,reg.summary$bic[6],col="red",cex=2,pch=20)
+```
+
+```{r}
+#| vscode: {languageId: r}
+# GENERATE MATRIX PLOTS FOR DIFFERENT METRICS 
+
+# sets up a 2x2 plotting layout using par(mfrow=c(2,2)), allowing for four plots to be displayed simultaneously.
+
+par(mfrow=c(2,2))
+plot(regfit.full,scale="r2")
+plot(regfit.full,scale="adjr2")
+plot(regfit.full,scale="Cp")
+plot(regfit.full,scale="bic")
+```
+
+```{r}
+#| vscode: {languageId: r}
+# PRINT FITTING PARAMETERS FOR 11TH SUBSET
+print(coef(regfit.full,11))
+```
+
+### Forward and Backward Stepwise Selection
+
+`Recall` the following overviews of these methods
+
+`Forward selection` is a method in regression analysis where predictors are added iteratively to a model. It starts with an empty model and systematically adds variables based on their individual significance, evaluating each addition's impact on model fit. This process continues until no additional variables significantly improve the model's performance.
+
+`Backward selection` is a regression technique where all predictors are initially included in the model, then variables are removed one by one based on their lack of significance. It systematically evaluates each variable's contribution to model fit, eliminating the least significant ones until the optimal subset remains.
+
+```{r}
+#| vscode: {languageId: r}
+# This code utilizes the `regsubsets` function in R to perform forward selection for a linear regression model. It selects predictors from the `Hitters` dataset to predict `Salary`, considering up to 19 variables (`nvmax=19`) in a forward stepwise manner.
+
+regfit.fwd=regsubsets(Salary~.,data=Hitters,nvmax=19,method="forward")
+```
+
+```{r}
+#| vscode: {languageId: r}
+summary(regfit.fwd)
+```
+
+Now lets try again with backward step-wise selection
+
+```{r}
+#| vscode: {languageId: r}
+regfit.bwd=regsubsets(Salary~.,data=Hitters,nvmax=19,method="backward")
+```
+
+```{r}
+#| vscode: {languageId: r}
+summary(regfit.bwd)
+```
+
+Lets compare the fitting parameters for the different methods with the feature subset of size 7 
+
+```{r}
+#| vscode: {languageId: r}
+print(coef(regfit.full,7))
+print(coef(regfit.fwd,7))
+print(coef(regfit.bwd,7))
+```
+
+### Cross validation: validation set approach
+
+`Choosing Among Models`
+
+In order to use the `validation set approach`, we begin by splitting the observations into a training set and a test set. 
+
+We do this by creating a random vector, train, of elements equal to TRUE if the corresponding observation is in the training set, and FALSE otherwise. 
+
+The vector test has a TRUE if the observation is in the test set, and a FALSE otherwise. 
+
+Note the ! in the command to create test causes TRUEs to be switched to FALSEs and vice versa. 
+
+We also set a random seed so that the user will obtain the same training set/test set split.
+
+```{r}
+#| vscode: {languageId: r}
+set.seed(1)
+# Generate a random sample of logical values (TRUE or FALSE)
+# The sample size is the number of rows in the 'Hitters' dataset
+# The 'rep = TRUE' argument specifies that sampling is done with replacement
+train=sample(c(TRUE,FALSE), nrow(Hitters),rep=TRUE)
+
+# Print fraction of dataset in training set
+# print(nrow(Hitters)) # print number of rows in df
+# print(train)
+print(sum(as.integer(train))/nrow(Hitters))
+```
+
+```{r}
+#| vscode: {languageId: r}
+test=(!train)
+# print(test)
+print(sum(as.integer(test))/nrow(Hitters))
+```
+
+Now, we apply regsubsets() to the training set in order to perform best subset selection.
+
+Notice that we subset the Hitters data frame directly in the call in order to access only the training subset of the data, using the expression Hitters[train,]. 
+
+```{r}
+#| vscode: {languageId: r}
+regfit.best=regsubsets(Salary~.,data=Hitters[train,],nvmax=19)
+```
+
+We now compute the validation set error for the best model of each model size. 
+
+We first make a model matrix from the test data.
+
+The model.matrix() function is used in many regression packages for building an “X” matrix from data. 
+
+```{r}
+#| vscode: {languageId: r}
+print(head(Hitters[test,]))
+```
+
+```{r}
+#| vscode: {languageId: r}
+# convert to test model matrix
+test.mat=model.matrix(Salary~.,data=Hitters[test,])
+print(head(test.mat))
+```
+
+Now we run a loop, and for each size i, we extract the coefficients from regfit.best for the best model of that size, multiply them into the appropriate columns of the test model matrix to form the predictions, and compute the test MSE.
+
+```{r}
+#| vscode: {languageId: r}
+# Initialize a vector to store validation errors, with length 19
+val.errors = rep(NA, 19)
+
+# Iterate through 19 iterations
+for (i in 1:19) {
+  # Extract coefficients for the 'i-th' subset from the 'regfit.best' object
+  coefi = coef(regfit.best, id = i)
+  
+  # Select the predictor variables based on the coefficients
+  # and predict using the 'test.mat' data
+  pred = test.mat[, names(coefi)] %*% coefi
+  
+  # Calculate the validation error as mean squared error
+  # by comparing the predicted values with the actual 'Salary' values
+  val.errors[i] = mean((Hitters$Salary[test] - pred)^2)
+}
+```
+
+We find that the best model is the one that contains ten variables.
+
+```{r}
+#| vscode: {languageId: r}
+print("------------------")
+print(val.errors)
+print("------------------")
+m=which.min(val.errors) #m=10
+print(coef(regfit.best,m))
+```
+
+This was a little tedious, partly because there is no predict() method for regsubsets(). 
+
+Since we will be using this function again, we can capture our results from above and write our own predict method.
+
+```{r}
+#| vscode: {languageId: r}
+# Define a function called predict.regsubsets
+predict.regsubsets = function(object, newdata, id, ...) {
+  
+  # Extract the formula used to fit the model
+  form = as.formula(object$call[[2]])
+  
+  # Create the model matrix for the new data based on the formula used in the model fitting
+  mat = model.matrix(form, newdata)
+  
+  # Obtain the coefficients for the specified model subset (id)
+  coefi = coef(object, id = id)
+  
+  # Extract the names of the predictor variables
+  xvars = names(coefi)
+  
+  # Multiply the subset of the model matrix with the corresponding coefficients
+  # This calculates the predicted values for the new data
+  mat[, xvars] %*% coefi
+}
+```
+
+Our function pretty much mimics what we did above.
+
+Finally, we perform best subset selection on the full data set, and select the best ten-variable model. 
+
+```{r}
+#| vscode: {languageId: r}
+regfit.best=regsubsets(Salary~.,data=Hitters,nvmax=19)
+print(coef(regfit.best,10))
+```
+
+In fact, we see that the best ten-variable model on the full data set has a different set of variables than the best ten-variable model on the training set.
+
+### Cross validation: K-Fold 
+
+We now try to choose among the models of different sizes using cross-validation. 
+
+we must perform best subset selection within each of the k training sets. 
+
+Despite this, we see that with its clever subsetting syntax, R makes this job quite easy. 
+
+First, we create a vector that allocates each observation to one of k = 10 folds, and we create a matrix in which we will store the results.
+
+```{r}
+#| vscode: {languageId: r}
+# Set the number of folds for cross-validation
+k = 10
+
+# Set the seed for reproducibility
+set.seed(1)
+
+# Create a vector of 'k' folds, each fold representing a subset of observations
+# from 1 to 'k', with replacement
+folds = sample(1:k, nrow(Hitters), replace = TRUE)
+
+# Create a matrix to store cross-validation errors
+# Rows correspond to folds, columns correspond to different subsets of variables (1 to 19)
+cv.errors = matrix(NA, k, 19, dimnames = list(NULL, paste(1:19)))
+```
+
+Now we write a for loop that performs cross-validation. 
+
+In the jth fold, the elements of folds that equal j are in the test set, and the remainder are in the training set. 
+
+We make our predictions for each model size (using our new predict() method), compute the test errors on the appropriate subset, and store them in the appropriate slot in the matrix cv.errors.
+
+```{r}
+#| vscode: {languageId: r}
+# Loop over each fold for cross-validation
+for (j in 1:k) {
+  # Fit regression models using subsets of predictors
+  # Leave out the 'j-th' fold for validation
+  best.fit = regsubsets(Salary ~ ., data = Hitters[folds != j, ], nvmax = 19)
+  
+  # Loop over each subset size (1 to 19)
+  for (i in 1:19) {
+    # Make predictions using the 'i-th' subset from the 'best.fit' model
+    pred = predict(best.fit, Hitters[folds == j, ], id = i)
+    
+    # Calculate the mean squared error for the current fold and subset
+    cv.errors[j, i] = mean((Hitters$Salary[folds == j] - pred)^2)
+  }
+}
+```
+
+This has given us a 10×19 matrix, of which the (i, j)th element corresponds to the test MSE for the ith cross-validation fold for the best j-variable model. 
+
+We use the apply() function to average over the columns of this matrix in order to obtain a vector for which the jth element is the cross- validation error for the j-variable model.
+
+```{r}
+#| vscode: {languageId: r}
+# Calculate the mean cross-validation errors across all folds for each subset size
+mean.cv.errors = apply(cv.errors, 2, mean)
+
+# Print the mean cross-validation errors
+print(mean.cv.errors)
+
+# Set the plotting layout to a single panel
+par(mfrow = c(1, 1))
+
+# Plot the mean cross-validation errors
+plot(mean.cv.errors, type = 'b')
+```
+
+We see that cross-validation selects an 10-variable model. 
+
+We now perform best subset selection on the full data set in order to obtain the 10-variable model.
+
+```{r}
+#| vscode: {languageId: r}
+reg.best=regsubsets(Salary~.,data=Hitters, nvmax=19)
+print(coef(reg.best,10))
+```
+
+## Example: Fertility Data
+
+Predicting fertility score on the basis of socio-economic indicators.
+
+```{r}
+# Load the data
+data("swiss")
+# Inspect the data
+sample_n(swiss, 3)
+```
+
+(a). Computing best subsets regression.
+
+In our example, we have only 5 predictor variables in the data. So, we’ll use nvmax = 5.
+
+```{r}
+models <- regsubsets(Fertility~., data = swiss, nvmax = 5)
+summary(models)
+```
+
+It can be seen that the best 2-variables model contains only Education and Catholic variables 
+
+$(Fertility \sim Education + Catholic)$. 
+
+The best three-variable model is 
+
+$(Fertility \sim Education + Catholic + Infant.mortality)$, and so forth.
+
+A natural question is: which of these best models should we finally choose for our predictive analytics?
+
+(c) Choosing the optimal model.
+
+```{r}
+res.sum <- summary(models)
+
+data.frame(
+  Adj.R2 = which.max(res.sum$adjr2),
+  CP = which.min(res.sum$cp),
+  BIC = which.min(res.sum$bic)
+)
+```
+
+Here, adjusted R2 tells us that the best model is the one with all the 5 predictor variables. However, using the BIC and Cp criteria, we should go for the model with 4 variables.
+
+Note also that the adjusted R2, BIC and Cp are calculated on the training data that have been used to fit the model. This means that, the model selection, using these metrics, is possibly subject to overfitting and may not perform as well when applied to new data.
+
+A more rigorous approach is to select a models based on the prediction error computed on a new test data using k-fold cross-validation 
+
+(d). K-fold cross-validation
+
+(i) get_model_formula(), allowing to access easily the formula of the models returned by the function regsubsets().
+
+```{r}
+# id: model id
+# object: regsubsets object
+# data: data used to fit regsubsets
+# outcome: outcome variable
+get_model_formula <- function(id, object, outcome){
+  # get models data
+  models <- summary(object)$which[id,-1]
+  # Get outcome variable
+  #form <- as.formula(object$call[[2]])
+  #outcome <- all.vars(form)[1]
+  # Get model predictors
+  predictors <- names(which(models == TRUE))
+  predictors <- paste(predictors, collapse = "+")
+  # Build model formula
+  as.formula(paste0(outcome, "~", predictors))
+}
+```
+
+For example to have the best 3-variable model formula;
+
+```{r}
+get_model_formula(3, models, "Fertility")
+```
+
+(ii) get_cv_error(), to get the cross-validation (CV) error for a given model:
+
+```{r}
+get_cv_error <- function(model.formula, data){
+  set.seed(1)
+  train.control <- trainControl(method = "cv", number = 5)
+  cv <- train(model.formula, data = data, method = "lm",
+              trControl = train.control)
+  cv$results$RMSE
+}
+```
+
+Finally, use the above defined helper functions to compute the prediction error of the different best models returned by the regsubsets() function:
+
+```{r}
+# Compute cross-validation error
+model.ids <- 1:5
+cv.errors <-  map(model.ids, get_model_formula, models, "Fertility") %>%
+  map(get_cv_error, data = swiss) %>%
+  unlist()
+cv.errors
+
+# Select the model that minimize the CV error
+which.min(cv.errors)
+```
+
+It can be seen that the model with 4 variables is the best model. It has the lower prediction error. 
+
+The regression coefficients of this model can be extracted as follow:
+
+```{r}
+coef(models, 4)
+```
+
+Read more:
+
+<http://www.sthda.com/english/articles/37-model-selection-essentials-in-r/155-best-subsets-regression-essentials-in-r/>
+
+<http://www.sthda.com/english/articles/37-model-selection-essentials-in-r/154-stepwise-regression-essentials-in-r/>
+
+
+# Part 2: Lab Assignment
+
+## Question 1: Model Selection Criteria on the Full Training Set
+
+Using **Best Subset Selection** with `nvmax = 19` (i.e., all predictors considered):
+
+### (a) Fit the Models
+
+1. Fit best subset models for all subset sizes from 1 to 19 predictors.
+2. Extract the following metrics for each model size:
+   * Bayesian Information Criterion (BIC)
+   * Mallow’s Cp
+   * Adjusted ( R^2 )
+
+### (b) Visualization
+
+Create **three separate plots**, each showing the metric as a function of model size:
+
+1. BIC vs. Number of Predictors
+2. Mallow’s Cp vs. Number of Predictors
+3. Adjusted ( R^2 ) vs. Number of Predictors
+
+For each plot:
+
+* Clearly label axes.
+* Highlight the optimal model size (minimum for BIC and Cp; maximum for Adjusted ( R^2 )).
+* Use consistent formatting across plots.
+
+### (c) Interpretation
+
+Answer the following questions clearly and concisely:
+
+1. What model size is selected by each metric?
+2. Do the three criteria select the same model size?
+3. If they differ, explain **why** this may occur, referencing how each metric penalizes model complexity.
+4. Based solely on these training-set metrics, which model would you choose? Justify your answer.
+
+Your explanation should demonstrate understanding of:
+
+* Overfitting
+* Bias–variance tradeoff
+* Penalty structure of BIC vs Cp vs Adjusted ( R^2 )
+
+## Question 2: Cross-Validation vs Training-Based Selection
+
+The criteria in Question 1 are computed using the full training data. In this question, you will evaluate models using cross-validation.
+
+### (a) Validation Set Approach
+
+1. Randomly split the dataset into training and test sets.
+2. Perform best subset selection using only the training set.
+3. Compute test Mean Squared Error (MSE) for each model size.
+4. Identify the model size that minimizes test MSE.
+5. Compare this selected model size with those selected in Question 1.
+
+### (b) K-Fold Cross-Validation (k = 10)
+
+1. Perform 10-fold cross-validation.
+2. Compute the average test MSE for each model size.
+3. Plot cross-validated MSE vs. model size.
+4. Identify the optimal model size.
+
+### (c) Comparative Analysis
+
+Answer the following:
+
+1. Does cross-validation select the same model as BIC/Cp/Adjusted ( R^2 )?
+2. If not, why might they differ?
+3. Which approach do you believe provides the most reliable model selection in this context?
+
