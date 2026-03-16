@@ -15348,7 +15348,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The separating hyperpline passes points (2, 1.5) and (4, 3.5). These 2 points are the middle points of lower left Red and Blue, and the upper right Red and Blue. These 2 pairs of Red and Blue observations are closest to each other. In order to separate them, we need to draw a line that crosses the middle of them.
+<p>The separating hyperpline passes points (2, 1.5) and (4, 3.5). These 2 points are the middle points of lower left Red and Blue, and the upper right Red and Blue. The line that passes through the middle of the two pairs of observations can well separate the two classes.
 Line function: $X_2 = \beta_0 + \beta_1 * X_1$
 Slope $\beta_1 = (3.5 - 1.5)/ (4-2) = 1$
 $1.5 = \beta_0 + 2$
@@ -15380,7 +15380,7 @@ $\beta_0 = -0.5$</p>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><strong>Answer:</strong>
 The classficiation rule for the maximal margin classifier is
-Classify to Red if $\beta_0 + \beta_1 * X_1 + \beta_2 * X_2$ &gt; 0, and classify to Blue otherwise, where $\beta_0 = -0.5; \beta_1 = 1; \beta_2 = -1$</p>
+Classify to Red if $-0.5 + X_1 - X_2 = 0$ &gt; 0, and classify to Blue otherwise, where $\beta_0 = -0.5; \beta_1 = 1; \beta_2 = -1$</p>
 
 </div>
 </div>
@@ -15405,7 +15405,7 @@ Classify to Red if $\beta_0 + \beta_1 * X_1 + \beta_2 * X_2$ &gt; 0, and classif
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><strong>Answer:</strong>
-(1) For the maximal margin classifier, the margin is the region between the two parallel lines that touch the closest observations (The Red point immediate above the hyperplane (2, 2)and the Blue point (4, 3) immediate below the hyperplane) on each side of the separating hyperplane. The margin lines are the as dashed lines on the sketch.
+(1) For the maximal margin classifier, the margin is the region between the two parallel lines that touch the closest observations - The Red point immediate above the hyperplane (2, 2) and the Blue point (4, 3) immediate below the hyperplane on each side of the separating hyperplane. The margin lines are the as dashed lines on the sketch.
 (2) Calculte the margin lines:</p>
 <p>$X_2 = \beta_{0_M1} + \beta_{1_M1} * X_1$
 Known: slope $\beta_{1_M1} = 1$; $X_1 = 2$; $X_2 = 2$
@@ -15486,7 +15486,7 @@ Blue (4,3)</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Answer:</strong> Only the observations that are close the hyperplane might affect it. The seventh observation Blue (4,1)'s distance is far away from the hyperplane, so a slight movement would not affect the maximal margin hyperplane.</p>
+<p><strong>Answer:</strong> Only the support vectors affects the maximal margin hyperplane. The seventh observation Blue (4,1) is far away from the margin, so a slight movement would not affect the position of the maximal margin hyperplane.</p>
 
 </div>
 </div>
