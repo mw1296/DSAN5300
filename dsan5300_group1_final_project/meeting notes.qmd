@@ -1,0 +1,21 @@
+---
+title: "Group meeting notes"
+format: html
+---
+
+### Meeting 03/20/2026
+- 1. Use the WEIGHT column in the model to adjust data close to the population?
+
+The weight tells you:
+How many people in the U.S. population this respondent represents. So instead of treating every observation equally, you scale them.
+Example:
+Respondent A: weight = 500
+Respondent B: weight = 2,000
+👉 B represents 4× more people than A in the population.
+
+```{R}
+#| eval: false
+lm(Y ~ X1 + X2, data = df, weights = weight)
+```
+
+**Discussion:**
