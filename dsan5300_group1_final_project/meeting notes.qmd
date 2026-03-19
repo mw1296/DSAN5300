@@ -29,7 +29,7 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 
 **Discussion:**
 
-- 4. Which variable to use as retirement_flag? (D22_i, D1l)
+- 4. Which variable to use as retirement_flag? (D22_i, D1i)
 
 **Discussion:**
 
@@ -54,27 +54,27 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 #### Method
  - 1. columns used for EDA:
 
-| Variable   | Question |
-|--------|-----|
-| B3  | financial health |
-| X12_abcdefg | financial concern flag |
+| Variable   | Question | EDA |
+|--------|-----|-----|
+| B3  | financial health | Y |
+| X12_abcdefg | financial concern flag | Y |
 | CG2 | weekly Childcare expense |
-| D22_i, D1l | retired flag |
-| D11 | retired flag |
+| D22_i, D1i | retired flag |
 | R1_abcdefgh | renting house flag |
 | R3 | monthly rental expense |
 | M4 | monthly mortgage payment |
-| A8 | credit health |
-| A0 | recent loan application |
+| A6  | credit application confidence |
 | A1_abc | credit card application issue |
 | AB_abcdef | loan application failure flag |
 | C3P, C4A | credit card default |
 | BNPL1 | BNPL flag |
 | BNPL3, BNPL3A | BNPL default |
+| BNPL4_abcdefg | BNPL reason |
 | ED0, ppeduc5, ED0_orig | education |
 | SL3 | monthly student loans amt |
-| SL1, | carrying loans flag |
 | SL6 | loans default flag |
+| SL4A | loan flag |
+| SL4 | monthly student loan payment |
 | I0_abcdef | Income flag |
 | ppemploy | employment flag |
 | I40 | 12 months income amt |
