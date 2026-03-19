@@ -4,10 +4,11 @@ format: html
 ---
 
 ### Meeting 03/20/2026
+#### Discussions
 - 1. Use the WEIGHT column in the model to adjust data close to the population?
 
 The weight tells you:
-How many people in the U.S. population this respondent represents. So instead of treating every observation equally, you scale them.
+How many people in the U.S. population this respondent represen ts. So instead of treating every observation equally, you scale them.
 Example:
 Respondent A: weight = 500
 Respondent B: weight = 2,000
@@ -28,18 +29,64 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 
 **Discussion:**
 
-- 4. Which variable to use as retirement_flag?
+- 4. Which variable to use as retirement_flag? (D22_i, D1l)
 
 **Discussion:**
 
-- 5. Which variable to use as financial situation (better or worse) ?
+- 5. Which variable to use as credit health? (A6, ppfs1482, A1_abc)
 
 **Discussion:**
 
-- 6. Which variable to use education level?
+- 6. Which variable to use as financial situation (better or worse) ?
 
 **Discussion:**
 
-- 7. Which variable to use as Race?
+- 7. Which variable to use education level? (ED0, ppeduc5)
 
 **Discussion:**
+
+- 8. Which variable to use as Race?
+**Discussion:**
+
+- 9. income amt? (ppinc7, I40)
+**Discussion:**
+
+#### Method
+ - 1. columns used for EDA:
+
+| Variable   | Question |
+|--------|-----|
+| B3  | financial health |
+| X12_abcdefg | financial concern flag |
+| CG2 | weekly Childcare expense |
+| D22_i, D1l | retired flag |
+| D11 | retired flag |
+| R1_abcdefgh | renting house flag |
+| R3 | monthly rental expense |
+| M4 | monthly mortgage payment |
+| A8 | credit health |
+| A0 | recent loan application |
+| A1_abc | credit card application issue |
+| AB_abcdef | loan application failure flag |
+| C3P, C4A | credit card default |
+| BNPL1 | BNPL flag |
+| BNPL3, BNPL3A | BNPL default |
+| ED0, ppeduc5, ED0_orig | education |
+| SL3 | monthly student loans amt |
+| SL1, | carrying loans flag |
+| SL6 | loans default flag |
+| I0_abcdef | Income flag |
+| ppemploy | employment flag |
+| I40 | 12 months income amt |
+| INF4 | financial health |
+| I9 | income statbility |
+| I21_a | income increase flag |
+| I21_b | spending increase flag |
+| EF1, EF2 | emergency fund flag |
+| EF5C | Bill default flag |
+| ppage | age |
+| ppethm, ppracem, pphispan | race |
+| ppgender | gender |
+| ppinc7 | household income |
+| ppmarit5 | marital status |
+| ppfs1482 | credit score |

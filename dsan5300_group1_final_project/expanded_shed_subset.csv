@@ -1,22 +1,4 @@
 variable,question,Important?,Use with
-L0_a,"My spouse or partner - First, do each of the
-following people currently live with you?",,
-L0_b,"My child(ren) under age 18 - First, do each
-of the following people currently live with
-you?",,
-L0_c,"My adult child(ren) age 18 or older - First,
-do each of the following people currently
-live with you?",,
-L0_d,"My parent(s) - First, do each of the
-following people currently live with you?",,
-L0_e,"Other individuals - First, do each of the
-following people currently live with you?",,
-L0B_a,"Your brother(s) or sister(s) – Are the people
-living with you:",,
-L0B_b,"Other relatives – Are the people living with
-you:",,
-L0B_c,"Other people not related to you – Are the
-people living with you:",,
 L0C,"How many children do you have who are under
 age 18 and currently live with you?",Y,
 L0E,How old is your (youngest) child that lives with you?,,
@@ -78,34 +60,34 @@ factor(s) have contributed to that? Please
 select all that apply.",,
 B7_a,In your community - How would you rate economic conditions today:,,
 B7_b,In this country - How would you rate economic conditions today:,,
-X11_none,indicates whether a respondent has no emergency savings or no liquid financial buffer.,Y,
+X11_none,indicates whether a respondent has no emergency savings or no liquid financial buffer.,,
 X12_a,"Finding or keeping a job - Are each of the
 following a financial challenge or concern
-you or your family?",,
+you or your family?",Y,Financial challenge flag
 X12_b,"Increases in prices for things you buy - Are
 each of the following a financial challenge
-concern for you or your family?",Y,
+concern for you or your family?",Y,Financial challenge flag
 X12_c,"Housing costs or availability - Are each of
 the following a financial challenge or
-concern for you or your family?",,
+concern for you or your family?",Y,Financial challenge flag
 X12_d,"Retirement savings - Are each of the
 following a financial challenge or concern
-for you of your family?",,
+for you of your family?",Y,Financial challenge flag
 X12_e,"Making ends meet - Are each of the following
 a financial challenge or concern for you
-or your family?",,
+or your family?",Y,Financial challenge flag
 X12_f,"Medical debt or affording medical care - Are
 each of the following a financial challenge
-or concern for you or your family?",,
+or concern for you or your family?",Y,Financial challenge flag
 X12_g,"Student loans or education costs - Are each
 of the following a financial challenge or
-concern for you or your family?",,
-CG0,"In the past week, did you use any paid childcare?",Y,
+concern for you or your family?",Y,Financial challenge flag
+CG0,"In the past week, did you use any paid childcare?",,
 CG2,How much do you pay per week for childcare in total for all of your children?,Y,Weekly child care payment
 D22_a,"Could not find (more) work - Did each of the
 following contribute to you (not working/
 working less than 35 hours per week) in the
-last month?",Y,
+last month?",,
 D22_i,"Retired - Did each of the following
 contribute to you not working/working less
 than 35 hours per week) in the last month?",Y,Retired flag
@@ -140,11 +122,11 @@ mortgage payment (i.e. the amount you send to
 the bank)?",Y,Monthly Mortgage payment
 A6,"If you were to apply for a credit card today,
 how confident are you that your application
-would be approved?",Y,
+would be approved?",Y,Credit health
 A0,"In the past 12 months have you applied for
 any credit (such as a credit card, higher
 credit card limit, mortgage, refinance,
-student loan, personal loan, or other loan)?",Y,
+student loan, personal loan, or other loan)?",Y,Load application flag
 A7_a,"Credit card - Have you applied for each of
 the following types of credit in the past 12
 months?",Y,Applied loans
@@ -176,31 +158,31 @@ past 12 months, has each of the following
 happened to you:",Y,credit issue
 A8_a,"Credit card - Were you turned down or offered
 less credit than requested for the following
-types of credit in the past 12 months?",Y,credit issue
+types of credit in the past 12 months?",Y,Loan application failure flag
 A8_b,"Car/auto loan - Were you turned down or
 offered less credit than requested for the
 following types of credit in the past 12
-months?",Y,credit issue
+months?",Y,Loan application failure flag
 A8_c,"Student loan - Were you turned down or
 offered less credit than requested for the
 following types of credit in the past 12
-months?",Y,credit issue
+months?",Y,Loan application failure flag
 A8_d,"Mortgage (purchase or refinance) - Were you
 turned down or offered less credit than
 requested for the following types of credit
-in the past 12 months?",Y,credit issue
+in the past 12 months?",Y,Loan application failure flag
 A8_e,"Home equity loan or line of credit - Were you
 turned down or offered less credit than
 requested for the following types of credit
-in the past 12 months?",Y,credit issue
+in the past 12 months?",Y,Loan application failure flag
 A8_f,"Other credit or loan - Were you turned down
 or offered less credit than requested for the
 following types of credit in the past 12
-months?",Y,credit issue
-C3P,"Last month, how did you handle your credit card bills?",Y,credit usage
+months?",Y,Loan application failure flag
+C3P,"Last month, how did you handle your credit card bills?",Y,Credit card default
 C4A,"In the past 12 months, how frequently have
 you carried an unpaid balance on one or more
-of your credit cards?",Y,Credit usage
+of your credit cards?",Y,Credit card default
 BNPL1,"In the past year, have you used a “Buy Now
 Pay Later” service to buy something?",Y,BNPL flag
 BNPL3,"In the past year, have you ever been late
@@ -321,20 +303,20 @@ benefits), could you cover you expenses for
 or selling assets?",Y,Emergency fund flag
 EF5C,"Other than any credit card bills you may
 have, did you pay all your bills in full last
-month?",Y,Payment behavior
+month?",Y,Bills default flag
 EF6C_a,"Rent or mortgage - How did you handle each of
-the following types of bills last month?",Y,Payment behavior
+the following types of bills last month?",,Payment behavior
 B0_b,"Water, gas, and electric bills - How did you
 handle each of the following types of bills
-last month?",Y,Payment behavior
+last month?",,Payment behavior
 B0_c,"I am concerned that the money I have or will
 save won't last - How well do each of these
-statements apply to you?",Y,Financial situation
+statements apply to you?",,Financial situation
 B1_a,"I have money left over at the end of the
 month - How often do each of these statements
-apply to you?",Y,Financial situation
+apply to you?",,Financial situation
 B1_b,"My finances control my life - How often do
-each of these statements apply to you?",Y,Financial situation
+each of these statements apply to you?",,Financial situation
 ppage,Age,,
 ppagecat,Age category,,
 ppagect4,Age category2,,
@@ -352,7 +334,7 @@ ppkid017,[Presence of Household Members - Children 0-17,,
 ppt18ov,Presence of Household Members - Adults 18+,,
 ppcm0160,Q26: Occupation (detailed) in current or main job,,
 ppfs0596,"Q22: What is the approximate total amount of
-your household's savings and investments?",Y,Savings and investment
+your household's savings and investments?",,Savings and investment
 ppfs1482,Q108: Where do you think your credit score falls?,Y,Credit score
 ppracem,race,Y,Race
 pphispan,"Are you Spanish, Hispanic, or Latino?",Y,Race

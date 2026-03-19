@@ -99,18 +99,219 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="question-to-discuss" class="level3">
-<h3 class="anchored" data-anchor-id="question-to-discuss">Question to discuss</h3>
+<section id="meeting-03202026" class="level3">
+<h3 class="anchored" data-anchor-id="meeting-03202026">Meeting 03/20/2026</h3>
+<section id="discussions" class="level4">
+<h4 class="anchored" data-anchor-id="discussions">Discussions</h4>
 <ul>
 <li><ol type="1">
 <li>Use the WEIGHT column in the model to adjust data close to the population?</li>
 </ol></li>
 </ul>
-<p>The weight tells you: How many people in the U.S. population this respondent represents. So instead of treating every observation equally, you scale them. Example: Respondent A: weight = 500 Respondent B: weight = 2,000 👉 B represents 4× more people than A in the population.</p>
+<p>The weight tells you: How many people in the U.S. population this respondent represen ts. So instead of treating every observation equally, you scale them. Example: Respondent A: weight = 500 Respondent B: weight = 2,000 👉 B represents 4× more people than A in the population.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2, <span class="at">data =</span> df, <span class="at">weights =</span> weight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><em>Discussion:</em></p>
+<p><strong>Discussion:</strong></p>
+<ul>
+<li><ol start="2" type="1">
+<li>There are multiple questions indicting similar metrics such as age, education, region, financial condition, income, employment status. Sync across memebers which ones to use.</li>
+</ol></li>
+</ul>
+<p><strong>Discussion:</strong></p>
+<ul>
+<li><ol start="3" type="1">
+<li>Shall we add up multiple total monthly payment variables to get the total monthly payment measure? (rental + loans + other)</li>
+</ol></li>
+</ul>
+<p><strong>Discussion:</strong></p>
+<ul>
+<li><ol start="4" type="1">
+<li>Which variable to use as retirement_flag? (D22_i, D1l)</li>
+</ol></li>
+</ul>
+<p><strong>Discussion:</strong></p>
+<ul>
+<li><ol start="5" type="1">
+<li>Which variable to use as credit health? (A6, ppfs1482, A1_abc)</li>
+</ol></li>
+</ul>
+<p><strong>Discussion:</strong></p>
+<ul>
+<li><ol start="6" type="1">
+<li>Which variable to use as financial situation (better or worse) ?</li>
+</ol></li>
+</ul>
+<p><strong>Discussion:</strong></p>
+<ul>
+<li><ol start="7" type="1">
+<li>Which variable to use education level? (ED0, ppeduc5)</li>
+</ol></li>
+</ul>
+<p><strong>Discussion:</strong></p>
+<ul>
+<li><ol start="8" type="1">
+<li>Which variable to use as Race? <strong>Discussion:</strong></li>
+</ol></li>
+<li><ol start="9" type="1">
+<li>income amt? (ppinc7, I40) <strong>Discussion:</strong></li>
+</ol></li>
+</ul>
+</section>
+<section id="method" class="level4">
+<h4 class="anchored" data-anchor-id="method">Method</h4>
+<ul>
+<li><ol type="1">
+<li>columns used for EDA:</li>
+</ol></li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B3</td>
+<td>financial health</td>
+</tr>
+<tr class="even">
+<td>X12_abcdefg</td>
+<td>financial concern flag</td>
+</tr>
+<tr class="odd">
+<td>CG2</td>
+<td>weekly Childcare expense</td>
+</tr>
+<tr class="even">
+<td>D22_i, D1l</td>
+<td>retired flag</td>
+</tr>
+<tr class="odd">
+<td>D11</td>
+<td>retired flag</td>
+</tr>
+<tr class="even">
+<td>R1_abcdefgh</td>
+<td>renting house flag</td>
+</tr>
+<tr class="odd">
+<td>R3</td>
+<td>monthly rental expense</td>
+</tr>
+<tr class="even">
+<td>M4</td>
+<td>monthly mortgage payment</td>
+</tr>
+<tr class="odd">
+<td>A8</td>
+<td>credit health</td>
+</tr>
+<tr class="even">
+<td>A0</td>
+<td>recent loan application</td>
+</tr>
+<tr class="odd">
+<td>A1_abc</td>
+<td>credit card application issue</td>
+</tr>
+<tr class="even">
+<td>AB_abcdef</td>
+<td>loan application failure flag</td>
+</tr>
+<tr class="odd">
+<td>C3P, C4A</td>
+<td>credit card default</td>
+</tr>
+<tr class="even">
+<td>BNPL1</td>
+<td>BNPL flag</td>
+</tr>
+<tr class="odd">
+<td>BNPL3, BNPL3A</td>
+<td>BNPL default</td>
+</tr>
+<tr class="even">
+<td>ED0, ppeduc5, ED0_orig</td>
+<td>education</td>
+</tr>
+<tr class="odd">
+<td>SL3</td>
+<td>monthly student loans amt</td>
+</tr>
+<tr class="even">
+<td>SL1,</td>
+<td>carrying loans flag</td>
+</tr>
+<tr class="odd">
+<td>SL6</td>
+<td>loans default flag</td>
+</tr>
+<tr class="even">
+<td>I0_abcdef</td>
+<td>Income flag</td>
+</tr>
+<tr class="odd">
+<td>ppemploy</td>
+<td>employment flag</td>
+</tr>
+<tr class="even">
+<td>I40</td>
+<td>12 months income amt</td>
+</tr>
+<tr class="odd">
+<td>INF4</td>
+<td>financial health</td>
+</tr>
+<tr class="even">
+<td>I9</td>
+<td>income statbility</td>
+</tr>
+<tr class="odd">
+<td>I21_a</td>
+<td>income increase flag</td>
+</tr>
+<tr class="even">
+<td>I21_b</td>
+<td>spending increase flag</td>
+</tr>
+<tr class="odd">
+<td>EF1, EF2</td>
+<td>emergency fund flag</td>
+</tr>
+<tr class="even">
+<td>EF5C</td>
+<td>Bill default flag</td>
+</tr>
+<tr class="odd">
+<td>ppage</td>
+<td>age</td>
+</tr>
+<tr class="even">
+<td>ppethm, ppracem, pphispan</td>
+<td>race</td>
+</tr>
+<tr class="odd">
+<td>ppgender</td>
+<td>gender</td>
+</tr>
+<tr class="even">
+<td>ppinc7</td>
+<td>household income</td>
+</tr>
+<tr class="odd">
+<td>ppmarit5</td>
+<td>marital status</td>
+</tr>
+<tr class="even">
+<td>ppfs1482</td>
+<td>credit score</td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 
 </main>
