@@ -19,3 +19,27 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 ```
 
 **Discussion:**
+
+- 2. There are multiple questions indicting similar metrics such as age, education, region, financial condition, income, employment status. Sync across memebers which ones to use.
+
+**Discussion:**
+
+- 3. Shall we add up multiple total monthly payment variables to get the total monthly payment measure? (rental + loans + other)
+
+**Discussion:**
+
+- 4. Which variable to use as retirement_flag?
+
+**Discussion:**
+
+- 5. Which variable to use as financial situation (better or worse) ?
+
+**Discussion:**
+
+- 6. Which variable to use education level?
+
+**Discussion:**
+
+- 7. Which variable to use as Race?
+
+**Discussion:**
