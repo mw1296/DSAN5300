@@ -127,7 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Discussion:</strong></p>
 <ul>
 <li><ol start="4" type="1">
-<li>Which variable to use as retirement_flag? (D22_i, D1l)</li>
+<li>Which variable to use as retirement_flag? (D22_i, D1i)</li>
 </ol></li>
 </ul>
 <p><strong>Discussion:</strong></p>
@@ -166,151 +166,234 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol></li>
 </ul>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Variable</th>
 <th>Question</th>
+<th>Category</th>
+<th>Correlation with BNPL1</th>
+<th>Spearman corr (p)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>B3</td>
 <td>financial health</td>
+<td></td>
+<td>Y</td>
+<td>-0.183 (5.55e-93)</td>
 </tr>
 <tr class="even">
 <td>X12_abcdefg</td>
 <td>financial concern flag</td>
-</tr>
-<tr class="odd">
-<td>CG2</td>
-<td>weekly Childcare expense</td>
-</tr>
-<tr class="even">
-<td>D22_i, D1l</td>
-<td>retired flag</td>
-</tr>
-<tr class="odd">
-<td>D11</td>
-<td>retired flag</td>
-</tr>
-<tr class="even">
-<td>R1_abcdefgh</td>
-<td>renting house flag</td>
-</tr>
-<tr class="odd">
-<td>R3</td>
-<td>monthly rental expense</td>
-</tr>
-<tr class="even">
-<td>M4</td>
-<td>monthly mortgage payment</td>
-</tr>
-<tr class="odd">
-<td>A8</td>
-<td>credit health</td>
-</tr>
-<tr class="even">
-<td>A0</td>
-<td>recent loan application</td>
-</tr>
-<tr class="odd">
-<td>A1_abc</td>
-<td>credit card application issue</td>
-</tr>
-<tr class="even">
-<td>AB_abcdef</td>
-<td>loan application failure flag</td>
-</tr>
-<tr class="odd">
-<td>C3P, C4A</td>
-<td>credit card default</td>
-</tr>
-<tr class="even">
-<td>BNPL1</td>
-<td>BNPL flag</td>
-</tr>
-<tr class="odd">
-<td>BNPL3, BNPL3A</td>
-<td>BNPL default</td>
-</tr>
-<tr class="even">
-<td>ED0, ppeduc5, ED0_orig</td>
-<td>education</td>
-</tr>
-<tr class="odd">
-<td>SL3</td>
-<td>monthly student loans amt</td>
-</tr>
-<tr class="even">
-<td>SL1,</td>
-<td>carrying loans flag</td>
-</tr>
-<tr class="odd">
-<td>SL6</td>
-<td>loans default flag</td>
-</tr>
-<tr class="even">
-<td>I0_abcdef</td>
-<td>Income flag</td>
-</tr>
-<tr class="odd">
-<td>ppemploy</td>
-<td>employment flag</td>
-</tr>
-<tr class="even">
-<td>I40</td>
-<td>12 months income amt</td>
-</tr>
-<tr class="odd">
-<td>INF4</td>
-<td>financial health</td>
-</tr>
-<tr class="even">
-<td>I9</td>
-<td>income statbility</td>
-</tr>
-<tr class="odd">
-<td>I21_a</td>
-<td>income increase flag</td>
-</tr>
-<tr class="even">
-<td>I21_b</td>
-<td>spending increase flag</td>
-</tr>
-<tr class="odd">
-<td>EF1, EF2</td>
-<td>emergency fund flag</td>
-</tr>
-<tr class="even">
-<td>EF5C</td>
-<td>Bill default flag</td>
-</tr>
-<tr class="odd">
-<td>ppage</td>
-<td>age</td>
-</tr>
-<tr class="even">
-<td>ppethm, ppracem, pphispan</td>
-<td>race</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>ppgender</td>
 <td>gender</td>
+<td></td>
+<td>N</td>
+<td></td>
 </tr>
 <tr class="even">
-<td>ppinc7</td>
-<td>household income</td>
+<td>CG2</td>
+<td>weekly Childcare expense</td>
+<td>monthly payment</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>ppmarit5</td>
-<td>marital status</td>
+<td>SL4</td>
+<td>monthly student loan payment</td>
+<td>monthly payment</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>ppfs1482</td>
-<td>credit score</td>
+<td>M4</td>
+<td>monthly mortgage payment</td>
+<td>monthly payment</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>I40</td>
+<td>12 months personal income amt</td>
+<td>income amt</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>D22_i, D1i</td>
+<td>retired flag</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>R1_abcdefgh</td>
+<td>renting house flag</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>A6</td>
+<td>credit application confidence</td>
+<td></td>
+<td>Y</td>
+<td>-0.21 (1.137e-124)</td>
+</tr>
+<tr class="odd">
+<td>A1_abc</td>
+<td>credit card application challenge</td>
+<td></td>
+<td>Y</td>
+<td>336.75 (3.26e-75, 0.286)</td>
+</tr>
+<tr class="even">
+<td>AB_abcdef</td>
+<td>loan/credit card application failure flag</td>
+<td>N</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>C4A</td>
+<td>credit card default frequency</td>
+<td></td>
+<td>Y</td>
+<td>0.273 (1.314e-176)</td>
+</tr>
+<tr class="even">
+<td>SL6</td>
+<td>student loans default flag</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>EF5C</td>
+<td>Bill default flag</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>SL4A</td>
+<td>student loan flag</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ppemploy</td>
+<td>employment flag</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ED0</td>
+<td>education</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>I0_abcdef</td>
+<td>Income flag</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>INF4</td>
+<td>financial health</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>I9</td>
+<td>income statbility</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>I21_a</td>
+<td>income increase flag</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>I21_b</td>
+<td>spending increase flag</td>
+<td></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ppage</td>
+<td>age</td>
+<td></td>
+<td>Y</td>
+<td>(-0.144, 4.917e-58)</td>
+</tr>
+<tr class="odd">
+<td>EF1, EF2</td>
+<td>emergency fund flag</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>BNPL1</td>
+<td>BNPL flag</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>BNPL3, BNPL3A</td>
+<td>BNPL default</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>BNPL4_abcdefg</td>
+<td>BNPL reason</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>SL3</td>
+<td>total student loans amt</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
+<div class="line-block">ppethm, ppracem, pphispan | race | N |<br>
+ppinc7 | household income |<br>
+ppmarit5 | marital status | | N |<br>
+ppfs1482 | credit score |<br>
+R3 | monthly rental expense paid by parent/spouse/partner/self |</div>
+<p><img src="img/credit_card_application_challenge_crosstab.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/agecat_crosstab.png" class="img-fluid quarto-figure quarto-figure-left"></p>
 </section>
 </section>
 
