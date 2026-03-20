@@ -167,11 +167,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 28%">
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 17%">
+<col style="width: 24%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -180,6 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th>Category</th>
 <th>Correlation with BNPL1</th>
 <th>Spearman corr (p)</th>
+<th>Chi^2 (p, cramers_v)</th>
 </tr>
 </thead>
 <tbody>
@@ -189,10 +191,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>Y</td>
 <td>-0.183 (5.55e-93)</td>
+<td>424(1.07e-91, 0.186)</td>
 </tr>
 <tr class="even">
 <td>X12_abcdefg</td>
 <td>financial concern flag</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -203,11 +207,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>N</td>
 <td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>CG2</td>
 <td>weekly Childcare expense</td>
 <td>monthly payment</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -217,11 +223,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>monthly payment</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>M4</td>
 <td>monthly mortgage payment</td>
 <td>monthly payment</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -231,12 +239,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>income amt</td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>D22_i, D1i</td>
 <td>retired flag</td>
 <td></td>
 <td>N</td>
+<td></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -245,6 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>N</td>
 <td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>A6</td>
@@ -252,17 +263,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>Y</td>
 <td>-0.21 (1.137e-124)</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>A1_abc</td>
 <td>credit card application challenge</td>
 <td></td>
 <td>Y</td>
+<td></td>
 <td>336.75 (3.26e-75, 0.286)</td>
 </tr>
 <tr class="even">
 <td>AB_abcdef</td>
 <td>loan/credit card application failure flag</td>
+<td></td>
 <td>N</td>
 <td></td>
 <td></td>
@@ -273,12 +287,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>Y</td>
 <td>0.273 (1.314e-176)</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>SL6</td>
 <td>student loans default flag</td>
 <td></td>
 <td>N</td>
+<td></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -287,12 +303,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>N</td>
 <td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>SL4A</td>
 <td>student loan flag</td>
 <td></td>
 <td>N</td>
+<td></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -301,12 +319,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>N</td>
 <td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>ED0</td>
 <td>education</td>
 <td></td>
 <td>N</td>
+<td></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -315,12 +335,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>N</td>
 <td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>INF4</td>
 <td>financial health</td>
 <td></td>
 <td>N</td>
+<td></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -329,12 +351,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>N</td>
 <td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>I21_a</td>
 <td>income increase flag</td>
 <td></td>
 <td>N</td>
+<td></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -343,24 +367,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>N</td>
 <td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>ppage</td>
 <td>age</td>
 <td></td>
 <td>Y</td>
-<td>(-0.144, 4.917e-58)</td>
+<td>-0.144 (4.917e-58)</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>EF1, EF2</td>
+<td>ppagecat</td>
+<td>age</td>
+<td></td>
+<td>Y</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ppethm, ppracem, pphispan</td>
+<td>race</td>
+<td></td>
+<td>N</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ppmarit5</td>
+<td>marital status</td>
+<td></td>
+<td>N</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>EF1</td>
 <td>emergency fund flag</td>
 <td></td>
+<td>Y</td>
+<td></td>
+<td>393.63(1.336e-87, 0.179)</td>
+</tr>
+<tr class="odd">
+<td>ppfs1482</td>
+<td>credit score</td>
+<td></td>
+<td>Y</td>
+<td></td>
+<td>676.18 (6.923e-144, 0.263416)</td>
+</tr>
+<tr class="even">
+<td>ppinc7</td>
+<td>household income</td>
+<td></td>
+<td>N</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>SL3</td>
+<td>total student loans amt</td>
+<td></td>
+<td>N</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>BNPL1</td>
 <td>BNPL flag</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -371,6 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>BNPL4_abcdefg</td>
@@ -378,22 +455,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>SL3</td>
-<td>total student loans amt</td>
+<td>R3</td>
+<td>monthly rental expense paid by parent/spouse/partner/self</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<div class="line-block">ppethm, ppracem, pphispan | race | N |<br>
-ppinc7 | household income |<br>
-ppmarit5 | marital status | | N |<br>
-ppfs1482 | credit score |<br>
-R3 | monthly rental expense paid by parent/spouse/partner/self |</div>
-<p><img src="img/credit_card_application_challenge_crosstab.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/agecat_crosstab.png" class="img-fluid quarto-figure quarto-figure-left"></p>
+<p><img src="img/credit_card_application_challenge_crosstab.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/agecat_crosstab.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/emergency_fund_crosstab.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/credit_score_crosstab.png" class="img-fluid quarto-figure quarto-figure-left"></p>
 </section>
 </section>
 
