@@ -54,15 +54,17 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 #### Method
  - 1. columns used for EDA:
 
-| Variable   | Question | EDA |
-|--------|-----|-----|
+| Variable   | Question | Correlation with BNPL1 | Category |
+|--------|-----|-----|-----|
 | B3  | financial health | Y |
-| X12_abcdefg | financial concern flag | Y |
-| CG2 | weekly Childcare expense |
-| D22_i, D1i | retired flag |
+| X12_abcdefg | financial concern flag | X12_e Y |
+| ppgender | gender | N |
+| CG2 | weekly Childcare expense | | monthly payment |
+| SL4 | monthly student loan payment | | monthly payment |
+| M4 | monthly mortgage payment | | monthly payment |
+| I40 | 12 months personal income amt | | income amt |
+| D22_i, D1i | retired flag | N |
 | R1_abcdefgh | renting house flag |
-| R3 | monthly rental expense |
-| M4 | monthly mortgage payment |
 | A6  | credit application confidence |
 | A1_abc | credit card application issue |
 | AB_abcdef | loan application failure flag |
@@ -71,13 +73,11 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 | BNPL3, BNPL3A | BNPL default |
 | BNPL4_abcdefg | BNPL reason |
 | ED0, ppeduc5, ED0_orig | education |
-| SL3 | monthly student loans amt |
+| SL3 | total student loans amt |
 | SL6 | loans default flag |
 | SL4A | loan flag |
-| SL4 | monthly student loan payment |
 | I0_abcdef | Income flag |
 | ppemploy | employment flag |
-| I40 | 12 months income amt |
 | INF4 | financial health |
 | I9 | income statbility |
 | I21_a | income increase flag |
@@ -85,8 +85,8 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 | EF1, EF2 | emergency fund flag |
 | EF5C | Bill default flag |
 | ppage | age |
-| ppethm, ppracem, pphispan | race |
-| ppgender | gender |
+| ppethm, ppracem, pphispan | race | ppethm Y |
 | ppinc7 | household income |
-| ppmarit5 | marital status |
+| ppmarit5 | marital status | N |
 | ppfs1482 | credit score |
+| R3 | monthly rental expense paid by parent/spouse/partner/self |
