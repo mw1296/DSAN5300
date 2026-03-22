@@ -81,3 +81,16 @@ This result is consistent with the result from the neural network space output t
 
 Adding the third hidden layer with 1 neuron doesn't make big impact (shown in below screenshot) as the 2 hidden layer model already perfomrs very well. The simpliest model that separate the model well is 2 hidden layers with 3 neurons on first layer and 2 neurons on the second layer. I also tried changing the activation to Tanh, which provides a sligtly better result but no meaningful difference from the Relu activation result.
 ![](img/Q_2.2.d_3layers.png)
+
+**Q-2.1.e**
+(i) Try the spiral-data set, which is more difficult. Try any architectures and activation functions that you want. How well can you do? What do you notice? Include a screenshot of your final model architecture.
+
+**Answer:** By adding 3 hidden layers, activation = Tahn, and transformations of x1 and x2 including x1^2, x2^2, sin(x1), sin(x2), x1x2, the model can finally separate the spiral data very well with only 0.003 error rate. Below is the architecture:
+
+ - 3 hidden layers: first layer has 8 neurons; second layer has 8 neurons; third layer has 2 neuron
+
+ - activation: Tahn
+
+ - features: x1, x2, x1^2, x2^2, x1*x2, sin(x1), sin(x2)
+
+![](img/Q_2.2.e_screenshot.png)
