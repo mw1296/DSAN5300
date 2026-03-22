@@ -51,8 +51,8 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 - 9. income amt? (ppinc7, I40)
 **Discussion:**
 
-#### Method
- - 1. columns used for EDA:
+#### EDA
+ - 1. Relationship with BNPL usage:
 
 | Variable   | Question | Category | Correlation with BNPL1 | Spearman corr (p) | Chi^2 (p, cramers_v) |
 |--------|-----|-----|-----|-----|-----|
@@ -88,7 +88,7 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 | ppinc7 | household income | | N | | |
 | SL3 | total student loans amt | | N | | |
 | BNPL1 | BNPL flag | | |
-| BNPL3, BNPL3A | BNPL default | | |
+| BNPL3 | BNPL default | | |
 | BNPL4_abcdefg | BNPL reason | | |
 | R3 | monthly rental expense paid by parent/spouse/partner/self | | |
 
@@ -96,3 +96,49 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 ![](img/agecat_crosstab.png){width=50%, fig-align="left"}
 ![](img/emergency_fund_crosstab.png){width=50%, fig-align="left"}
 ![](img/credit_score_crosstab.png){width=50%, fig-align="left"}
+
+ - 2. Relationship with BNPL default:
+
+| Variable   | Question | Category | Correlation with BNPL1 | Spearman corr (p) | Chi^2 (p, cramers_v) |
+|--------|-----|-----|-----|-----|-----|
+| B3  | financial health | | Y | -0.183 (5.55e-93) | 88.75 (4.052e-19, 0.23) |
+| X12_abcdefg | financial concern count | Y | | 42.23	(4.690e-07,	0.2287) |
+| X12_abcdefg | financial concern score | Y | | 57.69	(2.964e-07,	0.2671) |
+| ppgender | gender | | N | |
+| CG2 | weekly Childcare expense | monthly payment | |
+| SL4 | monthly student loan payment | monthly payment | |
+| M4 | monthly mortgage payment | monthly payment | |
+| I40 | 12 months personal income amt | income amt | |
+| D22_i, D1i | retired flag|  | N | | |
+| R1_abcdefgh | renting house flag | | N | |
+| A6  | credit application confidence | |  |  | |
+| A1_abc | credit card application challenge | | Y | 102.44	(4.443e-24,	0.33) | |
+| AB_abcdef | loan/credit card application failure flag | | N | | |
+| C4A | credit card default frequency | | Y | 0.273	(1.314e-176) | |
+| SL6 | student loans default flag | | N | | 41.289 (1.31e-10	0.313) |
+| EF5C | Bill default flag | | Y | | 103.721 (2.328e-24,	0.249) |
+| SL4A | student loan flag | | N | | |
+| ppemploy | employment flag | | N | | |
+| ED0| education | | N | | |
+| I0_abcdef | Income flag | | N | | |
+| INF4 | financial health | | N | | |
+| I9 | income statbility | | N | | |
+| I21_a | income increase flag | | N | | |
+| I21_b | spending increase flag | | N | | |
+| ppage | age | | Y | -0.144 (4.917e-58) | |
+| ppagecat | age | | Y |  | |
+| ppethm, ppracem, pphispan | race | | N | | |
+| ppmarit5 | marital status | |  N | | |
+| EF1 | emergency fund flag | | Y | | 393.63(1.336e-87,	0.179) |
+| ppfs1482 | credit score | | Y | | 676.18 (6.923e-144,	0.263) |
+| ppinc7 | household income | | Y | | 101.90 (1.00e-19,	0.247) |
+| SL3 | total student loans amt | | N | | |
+| BNPL1 | BNPL flag | | |
+| BNPL3 | BNPL default | | |
+| BNPL4_abcdefg | BNPL reason | | |
+| R3 | monthly rental expense paid by parent/spouse/partner/self | | |
+
+![](img/student_loan_default_crosstab.png){width=50%, fig-align="left"}
+![](img/retirement_flag_crosstab.png){width=50%, fig-align="left"}
+![](img/household_income_crosstab.png){width=50%, fig-align="left"}
+![](img/credit_score_crosstab2.png){width=50%, fig-align="left"}
