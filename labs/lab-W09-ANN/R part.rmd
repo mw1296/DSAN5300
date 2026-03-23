@@ -123,8 +123,6 @@ model <- lm(Y ~ X1 + X2, data = df)
 summary(model)
 ```
 
-**Comment:** The estimated $\beta_0 = 2.013$ ; the estimated $\beta_1 = -2.973$
-
 (b) Let's do the same with a neural net, but one with a simple architecture. A neural net with no hidden layer just describes an architecture where each input feature is linearly combined (via some weights) to create an output feature. This will be identical to Multiple Regression if we have no non-linear transformations along the way. Create such a neural net with the nnet package and confirm that you can recover the right parameter weights.
 
 With nnet, to do regression output (as opposed to classification output), use the argument "linout = TRUE". Also, use the argument "skip = TRUE" to confirm that you intend to _skip_ the hidden layer and just go straight from the input to the output layer. Comments on the neural net architecture and weights, do they match your expectation?
@@ -174,3 +172,33 @@ The mean squared error (MSE) of the neural network with a hidden layer is approx
 Since the true relationship between y and x1 and x2 is linear ($Y = 5 + 2X1 - 3X2 + \epsilon$), the neural network with a hidden layer does not significantly improve model performance compared to the linear model. The added hidden layer increases model flexibility and complexity, but this is unnecessary for a linear relationship and might cause overfitting.
 
 A simple linear model or neural network with no hidden layer are enought to fit the data.
+
+### Q-2.3
+
+Neural Networks are "universal function approximators", which means if you have a big enough neural network, then it will be flexible enough to fit any function you wish.
+
+```{r, fig.width=6, fig.height=6}
+sinc = function(x){x*sin(x)} # Define the function
+
+xx <- seq(-20,20,by=.1) # vector of x variables for plotting
+mydf = data.frame(x=xx, y = sinc(xx))
+
+plot(y ~x, data = mydf, type = 'l')
+
+
+# Now we will create a dataset by drawing a few samples from the domain of this function and evaluating this function at those locations.
+x <- runif(20, min = -20, max = 20 )
+mydf.train = data.frame(x = x, y = sinc(x))
+
+plot(y ~x, data = mydf.train, lwd = 2, col = 2)
+
+# Train network and make predictions
+# Note linout = T
+net1 <- nnet(y ~x, data = mydf.train, size = 20, decay = .001, maxit = 2000, linout = T)
+pred <- predict(net1, newdata = mydf, type = "r")
+
+# Make a plots of predictions, overlaid on the datapoints and the true function
+lines(xx,pred, col = 2)
+```
+
+Repeat the above by changing the hyper-parameters of the model such as the size of the hidden layer. Plot the results. Be sure to include an example of a small model (such as size=2) and a large model (such as size=40). Comment on what you saw and how it relates to the bias-variance tradeoff. Thinking back to the phrase "universal function approximator", what would it take for a neural network to truly fit any complex function we wish?
