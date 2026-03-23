@@ -201,4 +201,5 @@ pred <- predict(net1, newdata = mydf, type = "r")
 lines(xx,pred, col = 2)
 ```
 
-Repeat the above by changing the hyper-parameters of the model such as the size of the hidden layer. Plot the results. Be sure to include an example of a small model (such as size=2) and a large model (such as size=40). Comment on what you saw and how it relates to the bias-variance tradeoff. Thinking back to the phrase "universal function approximator", what would it take for a neural network to truly fit any complex function we wish?
+Repeat the above by changing the hyper-parameters of the model such as the size of the hidden layer. Plot the results.
+Be sure to include an example of a small model (such as size=2) and a large model (such as size=40). Comment on what you saw and how it relates to the bias-variance tradeoff. Thinking back to the phrase "universal function approximator", what would it take for a neural network to truly fit any complex function we wish?
