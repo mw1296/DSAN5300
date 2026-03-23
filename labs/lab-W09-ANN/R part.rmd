@@ -127,6 +127,8 @@ summary(model)
 
 (b) Let's do the same with a neural net, but one with a simple architecture. A neural net with no hidden layer just describes an architecture where each input feature is linearly combined (via some weights) to create an output feature. This will be identical to Multiple Regression if we have no non-linear transformations along the way. Create such a neural net with the nnet package and confirm that you can recover the right parameter weights.
 
+With nnet, to do regression output (as opposed to classification output), use the argument "linout = TRUE". Also, use the argument "skip = TRUE" to confirm that you intend to _skip_ the hidden layer and just go straight from the input to the output layer. Comments on the neural net architecture and weights, do they match your expectation?
+
 ```{r}
 library(nnet)
 
@@ -136,7 +138,7 @@ nn_model = nnet(
   data = df,
   size = 0,
   linout = TRUE,   # regression
-  skip = TRUE,
+  skip = TRUE, # skip hidden layer
   trace = FALSE
 )
 
@@ -144,4 +146,31 @@ nn_model = nnet(
 print(paste(c('Neural Net output parameter weights:',nn_model$wts)))
 ```
 
-**Comment:** We can see the simply neural net without hidden layer can well recover the right parameter weights that are same as linear model results.
+**Comment:** We can see the simple neural net without hidden layer and linear output can well recover the right parameter weights that are same as linear model results. This result meet the expectation as the weights are same as the coefficients used in y formula
+
+(c) But we can choose any ANN architecture we like, we can have a complex an nonlinear model. Choose a model with a non-zero hidden layer and fit. Comment on the resulting error and model.
+
+```{r}
+# fit neural network with hidden layer
+nn_model_1_hidden_layer = nnet(
+  Y ~ X1 + X2,
+  data = df,
+  size = 3,  # one hidden layer with 2 neurons
+  linout = TRUE,   # regression
+  trace = FALSE
+)
+
+# predictions
+pred_nn_1_hidden_layer = predict(nn_model_1_hidden_layer, df)
+
+# mse
+mse = mean((df$Y - pred_nn_1_hidden_layer)^2)
+mse
+```
+
+**Comment:**
+The mean squared error (MSE) of the neural network with a hidden layer is approximately 0.7479, indicating the model fits the data pretty well with some residual error.
+
+Since the true relationship between y and x1 and x2 is linear ($Y = 5 + 2X1 - 3X2 + \epsilon$), the neural network with a hidden layer does not significantly improve model performance compared to the linear model. The added hidden layer increases model flexibility and complexity, but this is unnecessary for a linear relationship and might cause overfitting.
+
+A simple linear model or neural network with no hidden layer are enought to fit the data.
