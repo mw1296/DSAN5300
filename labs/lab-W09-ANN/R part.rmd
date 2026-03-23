@@ -203,3 +203,52 @@ lines(xx,pred, col = 2)
 
 Repeat the above by changing the hyper-parameters of the model such as the size of the hidden layer. Plot the results.
 Be sure to include an example of a small model (such as size=2) and a large model (such as size=40). Comment on what you saw and how it relates to the bias-variance tradeoff. Thinking back to the phrase "universal function approximator", what would it take for a neural network to truly fit any complex function we wish?
+
+**Comment:** Create 10 plots with different hidden layer sizes randomly selected from 2 to 40
+
+```{r, fig.width=12, fig.height=15}
+library(nnet)
+
+# Create grid for plotting
+xx <- seq(-20, 20, length = 200)
+
+# Set layout: 2 rows × 5 columns (10 plots)
+par(mfrow = c(4, 3))
+
+# Loop over 10 different hidden layer sizes
+sizes <- seq(2, 40, length.out = 10)
+
+for (s in sizes) {
+
+  # Fit model
+  net <- nnet(
+    y ~ x,
+    data = mydf.train,
+    size = round(s),
+    linout = TRUE,
+    trace = FALSE,
+    maxit = 2000
+  )
+
+  # Predict on dense grid
+  pred <- predict(net, newdata = data.frame(x = xx))
+
+  # Plot training data
+  plot(y ~ x, data = mydf.train,
+       main = paste("size =", round(s)),
+       col = 2)
+
+  # Overlay prediction
+  lines(xx, pred, col = 2, lwd = 2)
+}
+```
+
+**Comment:**
+
+The plot shows that with about 10 hidden units, the model already fits the training data well, and increasing beyong 10 adds complexity without meaningful improvement.
+
+This is consistent with the Universal Approximation Theorem, as a relatively small network already has sufficient capacity to approximate the underlying function.
+
+From a bias–variance trade-off perspective, increasing hidden units reduces bias but increases variance. At around 10 units, the model achieves low training error but begins to overfit, and further increases in size mainly raise variance without improving generalization.
+
+while larger networks are more flexible, they become more computationally costly, harder to interpret, and do not necessarily improve performance on unseen data.
