@@ -21,6 +21,10 @@ Explore the web-application found at the following link
 
 Use the playground to create an architecture for logistic regression for binary classification. We'll have two inputs and one output.
 
+**Comment:**
+
+The logistic regression classifier without hidden layer does very well. It can separate the data to correct classes perfectly. The result is shown in the screenshot below.
+
 ![](img/Q_2.1.a_screenshot.png)
 
 **Q-2.1.b** What are your fitted weights? Use those weights to compute (by hand) what the predicted probability for two arbitrary sample points, verify your intuition.
@@ -33,7 +37,7 @@ P(y=1 \mid x) = \frac{1}{1 + e^{-(w_1 x_1 + w_2 x_2 + b)}}
 $$
 
 Fitted weights:
-$w_1 = 0.79$ | $w_2 =1.1$ | $b = 0$
+$w_1 = 0.89$ | $w_2 =1.1$ | $b = 0$
 
 **Point A: $(x_1 = 3, x_2 = 3)$**
 
@@ -58,34 +62,41 @@ $$
 
 **Result:**
 
-- Point A has a low probability (~0.00255) → classified as class 0
-- Point B has a high probability (~0.9975) → classified as class 1
+- Point A has a high probability (~0.9975) → classified as class 1
+- Point B has a high probability (~0.0026) → classified as class 0
 
-This result is consistent with the result from the neural network space output that 2 points belong to different classes.
+This result is consistent with the result from the neural network space output.
 
 **Q-2.1.c** Now use the bullseye data and try to fit this data with logistic regression. Does it work? Provide a screenshot of the result.
 
-**Answer:** With no transformations of the features and parameters setup, fitting bullseye data with logistic regression does not work well as shown in the sreenshot.
+**Answer:** With no transformations of the features and change of hypter parameters, fitting bullseye data with logistic regression does not work well as shown in the sreenshot.
 ![](img/Q_2.1.c_screenshot.png)
 
 **Q-2.1.c** Try using different transformations of the data. See if you can get logistic regression to fit this data. Can you get it to separate with a single layer?
 
-**Answer:** Yes, by doing quadratic transformations on x1 and x2, logistic regression can already separate data very well with a single layer as shown on the screenshot below.
+**Answer:** Yes, by doing quadratic transformations on x1 and x2, logistic regression can already separate data very well with a no hidden layer as shown on the screenshot below.
 ![](img/Q_2.1.c_screenshot2.png)
 
 
 **Q-2.1.d**  Explore adding hidden layers with 2 or 3 units and fit the model with different activations. Can you get it to work perfectly? Try adding another unit to the hidden layer. Comment on what is the simplest model that can still fit this dataset. Provide a screenshot of the result
 
-**Answer:** When adding 2 hidden layers with 3 and 2 neuron for each, and set activation as Relu, the data can be separated very well as shown in the screenshot below.
+**Answer:** When adding 2 units hidden layers with 3 and 2 neuron for each, and set activation as Relu, the data can be separated very well as shown in the screenshot below.
 ![](img/Q_2.2.d_2layers.png)
 
-Adding the third hidden layer with 1 neuron doesn't make big impact (shown in below screenshot) as the 2 hidden layer model already perfomrs very well. The simpliest model that separate the model well is 2 hidden layers with 3 neurons on first layer and 2 neurons on the second layer. I also tried changing the activation to Tanh, which provides a sligtly better result but no meaningful difference from the Relu activation result.
+Adding the third hidden layer with 1 neuron doesn't make necessary/meaningful improvement (shown in below screenshot) as the 2 hidden layer model already perfomrs very well.
+
+The simpliest model that separate the model well is **2 hidden layers** with **3 neurons on first layer and 2 neurons on the second layer**. **Activation is Relu**.
+
+I also tried changing the activation to **Tanh**, which provides a sligtly better result but no meaningful difference from the Relu activation result.
+
 ![](img/Q_2.2.d_3layers.png)
 
 **Q-2.1.e**
 (i) Try the spiral-data set, which is more difficult. Try any architectures and activation functions that you want. How well can you do? What do you notice? Include a screenshot of your final model architecture.
 
-**Answer:** By adding 3 hidden layers, activation = Tahn, and transformations of x1 and x2 including x1^2, x2^2, sin(x1), sin(x2), x1x2, the model can finally separate the spiral data very well with only 0.003 error rate. Below is the architecture:
+**Answer:** By adding **3 hidden layers**, **activation = Tahn**, and transformations of x1 and x2 including **x1^2, x2^2, sin(x1), sin(x2), x1x2**, the model can finally separate the spiral data very well with only 0.003 error rate.
+
+Below is the architecture:
 
  - 3 hidden layers: first layer has 8 neurons; second layer has 8 neurons; third layer has 2 neuron
 
@@ -140,11 +151,21 @@ nn_model = nnet(
   trace = FALSE
 )
 
+weights = nn_model$wts
 # print weights
-print(paste(c('Neural Net output parameter weights:',nn_model$wts)))
+cat("Neural Net output parameter weights:\n")
+print(weights)
 ```
 
-**Comment:** We can see the simple neural net without hidden layer and linear output can well recover the right parameter weights that are same as linear model results. This result meet the expectation as the weights are same as the coefficients used in y formula
+**Comment:**
+
+Using `nnet` with `linout = TRUE` and `skip = TRUE` results in a model that performs linear regression with no hidden layer, where the input features are directly connected to the output. This setup is equivalent to multiple linear regression.
+
+The estimated weights from the neural network are `r weights[2]` and `r weights[3]`.
+
+The weights are very close to the expected parameters, with only minor differences attributable to noise in the data and estimation variability, indicating that the model has successfully recovered the correct linear relationship.
+
+Overall, the architecture and learned weights align well with expectations for a linear model without hidden layers.
 
 (c) But we can choose any ANN architecture we like, we can have a complex an nonlinear model. Choose a model with a non-zero hidden layer and fit. Comment on the resulting error and model.
 
@@ -167,7 +188,7 @@ mse
 ```
 
 **Comment:**
-The mean squared error (MSE) of the neural network with a hidden layer is approximately 0.7479, indicating the model fits the data pretty well with some residual error.
+The mean squared error (MSE) of the neural network with a hidden layer is approximately `r mse`, indicating the model fits the data pretty well with some residual error.
 
 Since the true relationship between y and x1 and x2 is linear ($Y = 5 + 2X1 - 3X2 + \epsilon$), the neural network with a hidden layer does not significantly improve model performance compared to the linear model. The added hidden layer increases model flexibility and complexity, but this is unnecessary for a linear relationship and might cause overfitting.
 
@@ -245,10 +266,10 @@ for (s in sizes) {
 
 **Comment:**
 
-The plot shows that with about 10 hidden units, the model already fits the training data well, and increasing beyong 10 adds complexity without meaningful improvement.
+The plot shows that with about 10 hidden units, the model already fits the training data well, and increasing beyond 10 adds complexity without meaningful improvement.
 
 This is consistent with the Universal Approximation Theorem, as a relatively small network already has sufficient capacity to approximate the underlying function.
 
 From a bias–variance trade-off perspective, increasing hidden units reduces bias but increases variance. At around 10 units, the model achieves low training error but begins to overfit, and further increases in size mainly raise variance without improving generalization.
 
-while larger networks are more flexible, they become more computationally costly, harder to interpret, and do not necessarily improve performance on unseen data.
+While larger networks are more flexible, they become more computationally costly, harder to interpret, and do not necessarily improve performance on unseen data.
