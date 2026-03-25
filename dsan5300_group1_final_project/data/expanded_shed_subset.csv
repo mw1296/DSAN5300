@@ -1,0 +1,343 @@
+variable,question,Important?,Use with
+L0C,"How many children do you have who are under
+age 18 and currently live with you?",Y,
+L0E,How old is your (youngest) child that lives with you?,,
+B2,"Overall, which one of the following best
+describes how well you are managing
+financially these days?",Y,
+B3,"Compared to 12 months ago, would you say that
+you (and your family) are better off, the
+same, or worse off financially?",Y,Financial situation
+B3A_a,"My income is lower - You said that you (and
+your family) are (somewhat/much) worse off
+financially compared to 12 months ago. What
+factor(s) have contributed to that? Please
+select all that apply.",,
+B3A_b,"My expenses are higher - You said that you
+(and your family) are (somewhat/much) worse
+off financially compared to 12 months ago.
+What factor(s) have contributed to that?
+Please select all that apply.",,
+B3A_c,"The value of my assets decreased- You said
+that you (and your family) are somewhat worse
+off financially compared to 12 months ago.
+What factor(s) have contributed to that?
+Please select all that apply.",,
+B3A_d,"I have more debt - You said that you (and
+your family) are somewhat worse off
+financially compared to 12 months ago. What
+factor(s) have contributed to that? Please
+select all that apply.",,
+B3A_e,"Other (please specify) - You said that you
+(and your family) are somewhat worse off
+financially compared to 12 months ago. What
+factor(s) have contributed to that? Please
+select all that apply.",,
+B3B_a,"My income is higher - You said that you (and
+your family) are somewhat better off
+financially compared to 12 months ago. What
+factor(s) have contributed to that? Please
+select all that apply.",,
+B3B_b,"My expenses are lower - You said that you
+(and your family) are somewhat better off
+financially compared to 12 months ago. What
+factor(s) have contributed to that? Please
+select all that apply.",,
+B3B_c,"The value of my assets increased- You said
+that you (and your family) are somewhat
+better off financially compared to 12 months
+ago. What factor(s) have contributed to that?
+Please select all that apply.",,
+B3B_d,"I have less debt - You said that you (and
+your family) are somewhat better off
+financially compared to 12 months ago. What
+factor(s) have contributed to that? Please
+select all that apply.",,
+B3B_e,"Other (please specify) - You said that you
+(and your family) are somewhat better off
+financially compared to 12 months ago. What
+factor(s) have contributed to that? Please
+select all that apply.",,
+B7_a,In your community - How would you rate economic conditions today:,,
+B7_b,In this country - How would you rate economic conditions today:,,
+X11_none,indicates whether a respondent has no emergency savings or no liquid financial buffer.,,
+X12_a,"Finding or keeping a job - Are each of the
+following a financial challenge or concern
+you or your family?",Y,Financial challenge flag
+X12_b,"Increases in prices for things you buy - Are
+each of the following a financial challenge
+concern for you or your family?",Y,Financial challenge flag
+X12_c,"Housing costs or availability - Are each of
+the following a financial challenge or
+concern for you or your family?",Y,Financial challenge flag
+X12_d,"Retirement savings - Are each of the
+following a financial challenge or concern
+for you of your family?",Y,Financial challenge flag
+X12_e,"Making ends meet - Are each of the following
+a financial challenge or concern for you
+or your family?",Y,Financial challenge flag
+X12_f,"Medical debt or affording medical care - Are
+each of the following a financial challenge
+or concern for you or your family?",Y,Financial challenge flag
+X12_g,"Student loans or education costs - Are each
+of the following a financial challenge or
+concern for you or your family?",Y,Financial challenge flag
+CG0,"In the past week, did you use any paid childcare?",,
+CG2,How much do you pay per week for childcare in total for all of your children?,Y,Weekly child care payment
+D22_a,"Could not find (more) work - Did each of the
+following contribute to you (not working/
+working less than 35 hours per week) in the
+last month?",,
+D22_i,"Retired - Did each of the following
+contribute to you not working/working less
+than 35 hours per week) in the last month?",Y,Retired flag
+R1_a,"Renting is cheaper - Are each of the
+following a reason why you rent your home
+rather than own?",Y,Rent flag
+R1_b,"Renting is less financially risky - Are each
+of the following a reason why you rent your
+home rather than own?",Y,Rent flag
+R1_c,"Renting is more convenient or flexible - Are
+each of the following a reason why you rent
+your home rather than own?",Y,Rent flag
+R1_d,"Trying to buy - Are each of the following a
+reason why you rent your home rather than
+own?",Y,Rent flag
+R1_e,"Can't qualify for home mortgage - Are each of
+the following a reason why you rent your home
+rather than own?",Y,Rent flag
+R1_f,"Can't afford down payment to buy - Are each
+of the following a reason why you rent your
+home rather than own?",Y,Rent flag
+R1_g,"Can't afford mortgage monthly payment - Are
+each of the following a reason why you rent
+your home rather than own?",Y,Rent flag
+R1_h,"Prefer to rent - Are each of the following a
+reason why you rent your home rather than
+own?",Y,Rent flag
+R3,"Approximately how much do you and/or your
+spouse or partner pay for rent each month?",Y,Monthly Rental payment
+M4,"Approximately how much is your total monthly
+mortgage payment (i.e. the amount you send to
+the bank)?",Y,Monthly Mortgage payment
+A6,"If you were to apply for a credit card today,
+how confident are you that your application
+would be approved?",Y,Credit health
+A0,"In the past 12 months have you applied for
+any credit (such as a credit card, higher
+credit card limit, mortgage, refinance,
+student loan, personal loan, or other loan)?",Y,Load application flag
+A7_a,"Credit card - Have you applied for each of
+the following types of credit in the past 12
+months?",Y,Applied loans
+A7_b,"Car/auto loan - Have you applied for each of
+the following types of credit in the past 12
+months?",Y,Applied loans
+A7_c,"Student loan - Have you applied for each of
+the following types of credit in the past 12
+months?",Y,Applied loans
+A7_d,"Mortgage (purchase or refinance) - Have you
+applied for each of the following types of
+credit in the past 12 months?",Y,Applied loans
+A7_e,"Home equity loan or line of credit - Have you
+applied for each of the following types of
+credit in the past 12 months?",Y,Applied loans
+A7_f,"Other credit or loan - Have you applied for
+each of the following types of credit in the
+past 12 months?",Y,Applied loans
+A1_a,"Turned down for credit - In the past 12
+months, has each of the following happened to
+you:",Y,credit issue
+A1_b,"Approved for credit, but were not given as
+much credit as you applied for - In the past
+12 months, has each of the following
+happened to you:",Y,credit issue
+A1_c,"Put off applying for credit because you
+thought you might be turned down - In the
+past 12 months, has each of the following
+happened to you:",Y,credit issue
+A8_a,"Credit card - Were you turned down or offered
+less credit than requested for the following
+types of credit in the past 12 months?",Y,Loan application failure flag
+A8_b,"Car/auto loan - Were you turned down or
+offered less credit than requested for the
+following types of credit in the past 12
+months?",Y,Loan application failure flag
+A8_c,"Student loan - Were you turned down or
+offered less credit than requested for the
+following types of credit in the past 12
+months?",Y,Loan application failure flag
+A8_d,"Mortgage (purchase or refinance) - Were you
+turned down or offered less credit than
+requested for the following types of credit
+in the past 12 months?",Y,Loan application failure flag
+A8_e,"Home equity loan or line of credit - Were you
+turned down or offered less credit than
+requested for the following types of credit
+in the past 12 months?",Y,Loan application failure flag
+A8_f,"Other credit or loan - Were you turned down
+or offered less credit than requested for the
+following types of credit in the past 12
+months?",Y,Loan application failure flag
+C3P,"Last month, how did you handle your credit card bills?",Y,Credit card default
+C4A,"In the past 12 months, how frequently have
+you carried an unpaid balance on one or more
+of your credit cards?",Y,Credit card default
+BNPL1,"In the past year, have you used a “Buy Now
+Pay Later” service to buy something?",Y,BNPL flag
+BNPL3,"In the past year, have you ever been late
+making a payment for something you bought
+using a Buy Now Pay Later service?",Y,BNPL default
+BNPL3A,"In the past year, have you been charged extra
+because you were late on a buy now pay later
+payment?",Y,BNPL default
+BNPL4_a,"Avoid interest charges - Thinking about the
+most recent time you used a Buy Now Pay Later
+service, were each of the following a reason
+why you chose to finance the purchase in
+this way?",Y,BNPL reason
+BNPL4_b,"Wanted to spread out payments - Thinking
+about the most recent time you used a Buy Now
+Pay Later service, were each of the following
+a reason why you chose to finance the
+purchase in this way?",Y,BNPL reason
+BNPL4_c,"Wanted a fixed number of payments - Thinking
+about the most recent time you used a Buy Now
+Pay Later service, were each of the following
+a reason why you chose to finance the
+purchase in this way?",Y,BNPL reason
+BNPL4_d,"Convenience - Thinking about the most recent
+time you used a Buy Now Pay Later service,
+were each of the following a reason why you
+chose to finance the purchase in this way?",Y,BNPL reason
+BNPL4_e,"Only way I could afford it - Thinking about
+the most recent time you used a Buy Now Pay
+Later service, were each of the following a
+reason why you chose to finance the purchase
+in this way?",Y,BNPL reason
+BNPL4_f,"Only accepted payment method I had – Thinking
+about the most recent time you used a Buy Now
+Pay Later service, were each of the following
+a reason why you chose to finance the
+purchase in this way?",Y,BNPL reason
+BNPL4_g,"Did not want to use a credit card - Thinking
+about the most recent time you used a Buy Now
+Pay Later service, were each of the following
+a reason why you chose to finance the
+purchase in this way?",Y,BNPL reason
+ED0,"What is the highest level of school you have
+completed or the highest degree you have
+received?",Y,Education
+SL1,Do you currently have any student loan debt from your own education?,Y,Loans flag
+SL3,How much do you currently owe on student loans for your own education?,Y,Loans amt
+SL4,"Approximately how much is your current
+required monthly payment on the student loans
+from your own education?",Y,Monthly payment
+SL6,"Are you behind on payments or in collections
+for one or more of the student loans from
+your own education?",,Loans default
+D1I,Do you consider yourself to be retired?,Y,Retired flag
+K0,Do you think that your retirement savings plan is currently on track?,,
+I0_a,"Wages, salaries, or self-employment income -
+In the past 12 months, did you (and/or your
+spouse or partner) receive any income from
+the following sources:",Y,Income flag
+I0_b,"Interest, dividends, or rental income - In
+the past 12 months, did you (and/or your
+spouse or partner) receive any income from
+the following sources:",Y,Income flag
+I0_c,"Social Security (including old age and DI) -
+In the past 12 months, did you (and/or your
+spouse or partner) receive any income from
+the following sources:",Y,Income flag
+I0_d,"Supplemental Security Income (SSI), TANF, or
+cash assistance from a welfare program – In
+the past 12 months, did you (and/or your
+spouse or partner) receive any income from
+the following sources:",Y,Income flag
+I0_e,"Unemployment income - In the past 12 months,
+did you (and/or your spouse or partner)
+receive any income from the following
+sources:",Y,Income flag
+I0_f,"Pension - In the past 12 months, did you
+(and/or your spouse or partner) receive any
+income from the following sources:",Y,Income flag
+I40,"Which category represents your (and your
+spouse/partner’s) total combined income in
+the past 12 months?",Y,Income amt
+I9,"In the past 12 months, which one of the
+following best describes your (and your
+spouse’s or partner’s) income?",Y,Income stability
+I21_a,"Total monthly income - Compared to a year
+ago, have each of the following [for you and
+your spouse or partner] increased, decreased,
+or stayed about the same?",Y,Income increases
+I21_b,"Total monthly spending - Compared to a year
+ago, have each of the following [for you and
+your spouse or partner] increased, decreased,
+or stayed about the same?",Y,Spending increases
+INF4,"Overall, have changes in the prices you pay
+compared to last year made your financial
+situation worse, better, or had little to no
+effect?",Y,Financial situtation
+INF3_a,"Switched to cheaper products - Did you take
+any of the following actions because of
+increase in prices over the past 12 months?",,
+INF3_b,"Used less or stopped using products - Did you
+take any of the following actions because of
+increases in prices over the past 12 months?",,
+INF3_c,"Reduced savings - Did you take any of the
+following actions because of increases in
+prices over the past 12 months?",,
+INF3_d,"Increased borrowing - Did you take any of the
+following actions because of increases in
+prices over the past 12 months?",Y,Action to deal with increased price
+EF1,"Have you set aside emergency or rainy day
+funds that would cover your expenses for 3
+months in case of sickness, job loss,
+economic downturn, or other emergencies?",Y,Emergency fund flag
+EF2,"If you were to lose your main source of
+income (for example job or government
+benefits), could you cover you expenses for
+3 months by borrowing money, using savings,
+or selling assets?",Y,Emergency fund flag
+EF5C,"Other than any credit card bills you may
+have, did you pay all your bills in full last
+month?",Y,Bills default flag
+EF6C_a,"Rent or mortgage - How did you handle each of
+the following types of bills last month?",,Payment behavior
+B0_b,"Water, gas, and electric bills - How did you
+handle each of the following types of bills
+last month?",,Payment behavior
+B0_c,"I am concerned that the money I have or will
+save won't last - How well do each of these
+statements apply to you?",,Financial situation
+B1_a,"I have money left over at the end of the
+month - How often do each of these statements
+apply to you?",,Financial situation
+B1_b,"My finances control my life - How often do
+each of these statements apply to you?",,Financial situation
+ppage,Age,,
+ppagecat,Age category,,
+ppagect4,Age category2,,
+ppeduc5,Education,Y,Education
+ppemploy,Current Employment Status,Y,Employment flag
+ppethm,race,Y,Race
+ppgender,gender,Y,Gender
+pphhsize,Household size,Y,Household size
+ppinc7,Household income,Y,Income amt
+ppmarit5,Marital status,Y,Marital status
+ppreg9,Residence region,,
+pprent,Ownership Status of Living Quarters,,
+ppstaten,state,,
+ppkid017,[Presence of Household Members - Children 0-17,,
+ppt18ov,Presence of Household Members - Adults 18+,,
+ppcm0160,Q26: Occupation (detailed) in current or main job,,
+ppfs0596,"Q22: What is the approximate total amount of
+your household's savings and investments?",,Savings and investment
+ppfs1482,Q108: Where do you think your credit score falls?,Y,Credit score
+ppracem,race,Y,Race
+pphispan,"Are you Spanish, Hispanic, or Latino?",Y,Race
+ED0_orig,"What is the highest level of school you have
+completed or the highest degree you have
+received?",Y,Education
