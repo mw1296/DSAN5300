@@ -166,8 +166,9 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 
 | Variable | Question | Category | Correlation with BNPL1 | Spearman corr (p) | Chi^2 (p, cramers_v) |
 |--------|-----|-----|-----|-----|-----|
-| ppfs0596	| Household income and investment | | |  | 785.899053	(1.714126e-166,	0.157056)  |
+| ppfs0596	| Household income and investment | | | -0.157546	(2.101884e-168) | 785.899053	(1.714126e-166,	0.157056)  |
 | ppfs1482 | Where do you think your credit score falls? |  |  | | 2095.860225	(0.000000e+00,	0.228806)|
+| ppage | age |  |  | -0.129598	(5.249315e-176) | |
 | A6 | Confidence of credit card application approval | |  | | 1807.429243	(0.000000e+00	0.195611)|
 | C4A | Frequency carried an unpaid balance on credit cards | |  | | 2409.108407	(0.000000e+00	0.244392V)|
 | EF1 | Have you set aside emergency funds? | | |  | 1395.318197(2.186735e-305	0.171870)|
@@ -178,6 +179,7 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 | ppfs1482_Excellent  | where do your credit score falls? |  | |  | 1413.792239	(2.115226e-309	0.173004) | |
 | C4A_Most_or_all_of_the_time	 | In the past 12 months, how frequently have you carried an unpaid balance on one or more of your credit cards?  | |  | | 1511.582349	(0.000000e+00	0.178887) |
 | C4A_Never carried an unpaid balance (always paid in full) | In the past 12 months, how frequently have you carried an unpaid balance on one or more of your credit cards? | |  | | 1857.842534	(0.000000e+00	0.198321)|
+
 
 ![](img/crosstab1.png){width=50%, fig-align="left"}
 ![](img/crosstab2.png){width=50%, fig-align="left"}
