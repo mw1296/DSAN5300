@@ -786,6 +786,148 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="img/student_loan_default_crosstab.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/retirement_flag_crosstab.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/household_income_crosstab.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/credit_score_crosstab2.png" class="img-fluid quarto-figure quarto-figure-left"></p>
 </section>
 </section>
+<section id="meeting-03272026" class="level3">
+<h3 class="anchored" data-anchor-id="meeting-03272026">Meeting 03/27/2026</h3>
+<section id="discussions-1" class="level4">
+<h4 class="anchored" data-anchor-id="discussions-1">Discussions</h4>
+<ul>
+<li><ol type="1">
+<li>Use the WEIGHT column in the model to adjust data close to the population?</li>
+</ol></li>
+</ul>
+<p>The weight tells you: How many people in the U.S. population this respondent represen ts. So instead of treating every observation equally, you scale them. Example: Respondent A: weight = 500 Respondent B: weight = 2,000 👉 B represents 4× more people than A in the population.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2, <span class="at">data =</span> df, <span class="at">weights =</span> weight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="high-correlation-columns" class="level4">
+<h4 class="anchored" data-anchor-id="high-correlation-columns">High correlation columns</h4>
+<ul>
+<li><ol type="1">
+<li>With BNPL1:</li>
+</ol></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Question</th>
+<th>Category</th>
+<th>Correlation with BNPL1</th>
+<th>Spearman corr (p)</th>
+<th>Chi^2 (p, cramers_v)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ppfs0596</td>
+<td>Household income and investment</td>
+<td></td>
+<td></td>
+<td></td>
+<td>785.899053 (1.714126e-166, 0.157056)</td>
+</tr>
+<tr class="even">
+<td>ppfs1482</td>
+<td>Where do you think your credit score falls?</td>
+<td></td>
+<td></td>
+<td></td>
+<td>2095.860225 (0.000000e+00, 0.228806)</td>
+</tr>
+<tr class="odd">
+<td>A6</td>
+<td>Confidence of credit card application approval</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1807.429243 (0.000000e+00 0.195611)</td>
+</tr>
+<tr class="even">
+<td>C4A</td>
+<td>Frequency carried an unpaid balance on credit cards</td>
+<td></td>
+<td></td>
+<td></td>
+<td>2409.108407 (0.000000e+00 0.244392V)</td>
+</tr>
+<tr class="odd">
+<td>EF1</td>
+<td>Have you set aside emergency funds?</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1395.318197(2.186735e-305 0.171870)</td>
+</tr>
+<tr class="even">
+<td>A1_a</td>
+<td>Turned on for credit in past 12 months</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1028.181904 (1.344683e-225 0.249273)</td>
+</tr>
+<tr class="odd">
+<td>A1_b</td>
+<td>Approved for credit, but were not given as much credit as you applied for in the past 12 months</td>
+<td></td>
+<td></td>
+<td></td>
+<td>774.527515 (1.863587e-170 0.216351)</td>
+</tr>
+<tr class="even">
+<td>A1_c</td>
+<td>Put off applying for credit because you thought you might be turned down in the past 12 months</td>
+<td></td>
+<td></td>
+<td></td>
+<td>954.507724 (1.389561e-209 0.240176)</td>
+</tr>
+<tr class="odd">
+<td>X12_e</td>
+<td>Making ends meet - Are each of the following a financial challenge or concern for you or your family?</td>
+<td></td>
+<td></td>
+<td></td>
+<td>228.753785 (2.122007e-50 0.193255)</td>
+</tr>
+<tr class="even">
+<td>ppfs1482_Excellent</td>
+<td>where do your credit score falls?</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1413.792239 (2.115226e-309 0.173004)</td>
+</tr>
+<tr class="odd">
+<td>C4A_Most_or_all_of_the_time</td>
+<td>In the past 12 months, how frequently have you carried an unpaid balance on one or more of your credit cards?</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1511.582349 (0.000000e+00 0.178887)</td>
+</tr>
+<tr class="even">
+<td>C4A_Never carried an unpaid balance (always paid in full)</td>
+<td>In the past 12 months, how frequently have you carried an unpaid balance on one or more of your credit cards?</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1857.842534 (0.000000e+00 0.198321)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="img/crosstab1.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/crosstab2.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/crosstab3.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/crosstab4.png" class="img-fluid quarto-figure quarto-figure-left"></p>
+</section>
+</section>
 
 </main>
 <!-- /main column -->

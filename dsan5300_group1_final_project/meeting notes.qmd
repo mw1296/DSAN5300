@@ -142,3 +142,46 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 ![](img/retirement_flag_crosstab.png){width=50%, fig-align="left"}
 ![](img/household_income_crosstab.png){width=50%, fig-align="left"}
 ![](img/credit_score_crosstab2.png){width=50%, fig-align="left"}
+
+
+
+### Meeting 03/27/2026
+#### Discussions
+- 1. Use the WEIGHT column in the model to adjust data close to the population?
+
+The weight tells you:
+How many people in the U.S. population this respondent represen ts. So instead of treating every observation equally, you scale them.
+Example:
+Respondent A: weight = 500
+Respondent B: weight = 2,000
+👉 B represents 4× more people than A in the population.
+
+```{R}
+#| eval: false
+lm(Y ~ X1 + X2, data = df, weights = weight)
+```
+
+#### High correlation columns
+ - 1. With BNPL1:
+
+| Variable | Question | Category | Correlation with BNPL1 | Spearman corr (p) | Chi^2 (p, cramers_v) |
+|--------|-----|-----|-----|-----|-----|
+| ppfs0596	| Household income and investment | | |  | 785.899053	(1.714126e-166,	0.157056)  |
+| ppfs1482 | Where do you think your credit score falls? |  |  | | 2095.860225	(0.000000e+00,	0.228806)|
+| A6 | Confidence of credit card application approval | |  | | 1807.429243	(0.000000e+00	0.195611)|
+| C4A | Frequency carried an unpaid balance on credit cards | |  | | 2409.108407	(0.000000e+00	0.244392V)|
+| EF1 | Have you set aside emergency funds? | | |  | 1395.318197(2.186735e-305	0.171870)|
+| A1_a | Turned on for credit in past 12 months | |  | | 1028.181904	(1.344683e-225	0.249273)|
+| A1_b| Approved for credit, but were not given as much credit as you applied for in the past 12 months | | | | 774.527515	(1.863587e-170	0.216351)|
+| A1_c | Put off applying for credit because you thought you might be turned down in the past 12 months |  |  | | 954.507724	(1.389561e-209	0.240176) |
+| X12_e | Making ends meet - Are each of the following a financial challenge or concern for you or your family? | |  | | 228.753785	(2.122007e-50	0.193255) |
+| ppfs1482_Excellent  | where do your credit score falls? |  | |  | 1413.792239	(2.115226e-309	0.173004) | |
+| C4A_Most_or_all_of_the_time	 | In the past 12 months, how frequently have you carried an unpaid balance on one or more of your credit cards?  | |  | | 1511.582349	(0.000000e+00	0.178887) |
+| C4A_Never carried an unpaid balance (always paid in full) | In the past 12 months, how frequently have you carried an unpaid balance on one or more of your credit cards? | |  | | 1857.842534	(0.000000e+00	0.198321)|
+
+![](img/crosstab1.png){width=50%, fig-align="left"}
+![](img/crosstab2.png){width=50%, fig-align="left"}
+![](img/crosstab3.png){width=50%, fig-align="left"}
+![](img/crosstab4.png){width=50%, fig-align="left"}
+
+ - 2. With BNPL3:
