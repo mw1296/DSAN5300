@@ -161,6 +161,21 @@ Respondent B: weight = 2,000
 lm(Y ~ X1 + X2, data = df, weights = weight)
 ```
 
+
+- 2. Questions to answer
+
+2.1. Describe BNPL users characteristics. Compare with those not. Descriptive plots (multi-dimensional scatter plot), crosstab, corr heatmap.
+
+2.2. Describe BNPL default users characteristics. Compare with those not. Descriptive plots (multi-dimensional scatter plot), crosstab, corr heatmap.
+
+2.3 Regression model to predict BNPL use or not. Cross validation. Accuracy. Significant predictors? Model reduction. Add regularization.
+
+2.4 Regression model to predict BNPL default. Cross validation. Accuracy. Significant predictors? Model reduction. Add regularization.
+
+2.5 SVC/SVM? support vector machine.
+
+
+
 #### High correlation columns
  - 1. With BNPL1:
 

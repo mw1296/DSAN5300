@@ -799,6 +799,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2, <span class="at">data =</span> df, <span class="at">weights =</span> weight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<ul>
+<li><ol start="2" type="1">
+<li>Questions to answer</li>
+</ol></li>
+</ul>
+<p>2.1. Describe BNPL users characteristics. Compare with those not. Chart, crosstab, corr heatmap.</p>
+<p>2.2. Describe BNPL default users characteristics. Compare with those not. Chart, crosstab, corr heatmap.</p>
+<p>2.3 Regression model to predict BNPL use or not. Cross validation. Accuracy. Significant predictors? Model reduction. Add regularization.</p>
+<p>2.4 Regression model to predict BNPL default. Cross validation. Accuracy. Significant predictors? Model reduction. Add regularization.</p>
+<p>2.5 SVC/SVM? support vector machine.</p>
 </section>
 <section id="high-correlation-columns" class="level4">
 <h4 class="anchored" data-anchor-id="high-correlation-columns">High correlation columns</h4>
@@ -964,7 +974,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Spending higher/lower/same as income</td>
 <td></td>
 <td></td>
-<td>()</td>
+<td></td>
 <td>153.998819 (3.627283e-34 0.167164)</td>
 </tr>
 <tr class="even">
@@ -972,7 +982,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Education</td>
 <td></td>
 <td></td>
-<td>()</td>
+<td></td>
 <td>127.669360 (1.719082e-27 0.152205)</td>
 </tr>
 <tr class="odd">
@@ -980,7 +990,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Household income and investment</td>
 <td></td>
 <td></td>
-<td>()</td>
+<td></td>
 <td>785.899053 (1.714126e-166, 0.157056)</td>
 </tr>
 <tr class="even">
@@ -988,7 +998,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Household income</td>
 <td></td>
 <td></td>
-<td></td>
+<td>-0.206426 (4.186553e-54)</td>
 <td>248.637921 (8.016644e-51 0.212407)</td>
 </tr>
 <tr class="odd">
@@ -1069,17 +1079,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td></td>
 <td></td>
-<td>51.299939 (7.250364e-12 0.252128</td>
+<td>51.299939 (7.250364e-12 0.252128)</td>
 </tr>
 <tr class="odd">
-<td>)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
 <td>EF5C</td>
 <td>Other than any credit card bills you may have, did you pay all your bills in full last month?</td>
 <td></td>
@@ -1087,7 +1089,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>230.371682 (4.946355e-52 0.271512)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>ppfs1482_Excellent</td>
 <td>Excellent credit scores</td>
 <td></td>
@@ -1095,7 +1097,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>127.502275 (1.442355e-29 0.152105)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>ppfs1482_Poor</td>
 <td>Poor credit scores</td>
 <td></td>
@@ -1105,6 +1107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<p><img src="img/crosstab5.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/crosstab6.png" class="img-fluid quarto-figure quarto-figure-left"> <img src="img/crosstab7.png" class="img-fluid quarto-figure quarto-figure-left"></p>
 </section>
 </section>
 
