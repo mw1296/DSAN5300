@@ -242,5 +242,64 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 `88% of 'No' in the BNPL1`. If predicting all as 'No', the model accuracy could achieve 88% but not meaningful.
 
 
-### Progress
- - 1.
+### Result
+With resampled data to balance y classes, using all years data, recall as scoring in the feature selection, below are features selected that achieve over 90% accuracy with good precision and recall
+
+- 1. Logistic model
+
+**selected features**
+
+['I20_Less than your income', 'I20_More than your income',
+       'I20_The same as your income', 'ppeducat_Bachelor's degree or higher',
+       'ppeducat_High school graduate (high school diploma or the equivalent GED)',
+       'ppeducat_No high school diploma or GED',
+       'ppeducat_Some college or Associate's degree',
+       'ppethm_2+ Races, Non-Hispanic', 'ppethm_Black, Non-Hispanic',
+       'ppethm_Hispanic', 'ppethm_Other, Non-Hispanic',
+       'ppethm_White, Non-Hispanic', 'ppinc7_$10,000 to $24,999',
+       'ppinc7_$100,000 to $149,999', 'ppinc7_$150,000 or more',
+       'ppinc7_$25,000 to $49,999', 'ppinc7_$50,000 to $74,999',
+       'ppinc7_$75,000 to $99,999', 'ppinc7_Less than $10,000',
+       'ppemploy_Not working', 'ppemploy_Working full-time',
+       'ppemploy_Working part-time', 'ppmarit5_Divorced',
+       'ppmarit5_Never married', 'ppmarit5_Now married', 'ppmarit5_Separated',
+       'ppmarit5_Widowed', 'ppagecat_18-24', 'ppagecat_25-34',
+       'ppagecat_35-44', 'ppagecat_45-54', 'ppagecat_55-64', 'ppagecat_65-74',
+       'ppagecat_75+', 'B3_About the same', 'B3_Much better off',
+       'B3_Much worse off', 'B3_Somewhat better off', 'B3_Somewhat worse off',
+       'A6_Don’t know', 'A6_Not confident', 'A6_Somewhat confident',
+       'A6_Very confident']
+
+![](img/logistic_regression_best_cm.png){width=50%, fig-align="left"}
+
+
+- 2. Linear SVC
+
+**selected features**
+
+['EF3_d', 'EF3_f', 'I20_Less than your income',
+       'I20_More than your income', 'I20_The same as your income',
+       'ppeducat_Bachelor's degree or higher',
+       'ppeducat_High school graduate (high school diploma or the equivalent GED)',
+       'ppeducat_No high school diploma or GED',
+       'ppeducat_Some college or Associate's degree',
+       'ppethm_2+ Races, Non-Hispanic', 'ppethm_Black, Non-Hispanic',
+       'ppethm_Hispanic', 'ppethm_Other, Non-Hispanic',
+       'ppethm_White, Non-Hispanic', 'ppinc7_$10,000 to $24,999',
+       'ppinc7_$100,000 to $149,999', 'ppinc7_$150,000 or more',
+       'ppinc7_$25,000 to $49,999', 'ppinc7_$50,000 to $74,999',
+       'ppinc7_$75,000 to $99,999', 'ppinc7_Less than $10,000',
+       'ppemploy_Not working', 'ppemploy_Working full-time',
+       'ppemploy_Working part-time', 'ppmarit5_Divorced',
+       'ppmarit5_Never married', 'ppmarit5_Now married', 'ppmarit5_Separated',
+       'ppmarit5_Widowed', 'ppagecat_18-24', 'ppagecat_25-34',
+       'ppagecat_35-44', 'ppagecat_45-54', 'ppagecat_55-64', 'ppagecat_65-74',
+       'ppagecat_75+', 'ppfs1482_Don’t know', 'ppfs1482_Excellent',
+       'ppfs1482_Good', 'ppfs1482_Very poor', 'B3_About the same',
+       'B3_Much better off', 'B3_Much worse off', 'B3_Somewhat better off',
+       'B3_Somewhat worse off', 'A6_Don’t know', 'A6_Not confident',
+       'A6_Somewhat confident', 'A6_Very confident',
+       'C4A_Most or all of the time',
+       'C4A_Never carried an unpaid balance (always pay in full)']
+
+![](img/linear_svc_best_cm.png){width=50%, fig-align="left"}
