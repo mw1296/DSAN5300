@@ -245,7 +245,7 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 ### Result
 With resampled data to balance y classes, using all years data, recall as scoring in the feature selection, below are features selected that achieve over 90% accuracy with good precision and recall
 
-- 1. Logistic model
+- 1. BNPL1 - Logistic model
 
 **selected features**
 
@@ -270,10 +270,10 @@ With resampled data to balance y classes, using all years data, recall as scorin
        'A6_Don’t know', 'A6_Not confident', 'A6_Somewhat confident',
        'A6_Very confident']
 
-![](img/logistic_regression_best_cm.png){width=50%, fig-align="left"}
+![](img/BNPL1_logistic_regression_best_cm.png){width=50%, fig-align="left"}
 
 
-- 2. Linear SVC
+- 2. BNPL1 - Linear SVC
 
 **selected features**
 
@@ -302,13 +302,51 @@ With resampled data to balance y classes, using all years data, recall as scorin
        'C4A_Most or all of the time',
        'C4A_Never carried an unpaid balance (always pay in full)']
 
-![](img/linear_svc_best_cm.png){width=50%, fig-align="left"}
+![](img/BNPL1_linear_svc_best_cm.png){width=50%, fig-align="left"}
 
 
-- 3. Final SVC model including resampling, cv and l1 with above selected features
+- 3. BNPL1 - Final SVC model including resampling, cv and l1 with above selected features
 
-![](img/final_linear_svc_best_cm.png){width=50%, fig-align="left"}
+['EF3_c', 'EF3_d', 'EF3_e', 'EF3_f', 'EF3_h', 'ppkid017',
+       'I20_Less than your income', 'ppfs0596_$1,000,000 or more',
+       'ppfs0596_$250,000 - $499,999', 'ppfs0596_$500,000 - $999,999',
+       'ppfs0596_Under $50,000', 'ppeducat_No high school diploma or GED',
+       'ppethm_2+ Races, Non-Hispanic', 'ppethm_Other, Non-Hispanic',
+       'ppethm_White, Non-Hispanic', 'ppinc7_$10,000 to $24,999',
+       'ppinc7_$100,000 to $149,999', 'ppinc7_$150,000 or more',
+       'ppinc7_$75,000 to $99,999', 'ppinc7_Less than $10,000',
+       'ppmarit5_Divorced', 'ppmarit5_Never married', 'ppagecat_18-24',
+       'ppagecat_45-54', 'ppagecat_65-74', 'ppagecat_75+',
+       'ppfs1482_Excellent', 'ppfs1482_Fair', 'ppfs1482_Poor',
+       'ppfs1482_Very poor', 'B3_Much worse off', 'A6_Not confident',
+       'A6_Very confident', 'C4A_Most or all of the time',
+       'C4A_Never carried an unpaid balance (always pay in full)', 'C4A_Once',
+       'C4A_Some of the time', 'L0C_1', 'L0C_2', 'L0C_3', 'L0C_4',
+       'L0C_5 or more']
 
+![](img/BNPL1_final_linear_svc_best_cm.png){width=50%, fig-align="left"}
+
+
+ - 4. BNPL3 - Linear SVC
+
+['EF3_c', 'EF3_d', 'EF3_e', 'EF3_f', 'EF3_h', 'ppkid017',
+       'I20_Less than your income', 'ppfs0596_$1,000,000 or more',
+       'ppfs0596_$250,000 - $499,999', 'ppfs0596_$500,000 - $999,999',
+       'ppfs0596_Under $50,000', 'ppeducat_No high school diploma or GED',
+       'ppethm_2+ Races, Non-Hispanic', 'ppethm_Other, Non-Hispanic',
+       'ppethm_White, Non-Hispanic', 'ppinc7_$10,000 to $24,999',
+       'ppinc7_$100,000 to $149,999', 'ppinc7_$150,000 or more',
+       'ppinc7_$75,000 to $99,999', 'ppinc7_Less than $10,000',
+       'ppmarit5_Divorced', 'ppmarit5_Never married', 'ppagecat_18-24',
+       'ppagecat_45-54', 'ppagecat_65-74', 'ppagecat_75+',
+       'ppfs1482_Excellent', 'ppfs1482_Fair', 'ppfs1482_Poor',
+       'ppfs1482_Very poor', 'B3_Much worse off', 'A6_Not confident',
+       'A6_Very confident', 'C4A_Most or all of the time',
+       'C4A_Never carried an unpaid balance (always pay in full)', 'C4A_Once',
+       'C4A_Some of the time', 'L0C_1', 'L0C_2', 'L0C_3', 'L0C_4',
+       'L0C_5 or more']
+
+![](img/BNPL3_linear_svc_best_cm.png){width=50%, fig-align="left"}
 
 ### Presentation Q&A preparation
 
