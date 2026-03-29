@@ -305,6 +305,9 @@ With resampled data to balance y classes, using all years data, recall as scorin
 ![](img/linear_svc_best_cm.png){width=50%, fig-align="left"}
 
 
+- 3. Final SVC model including resampling, cv and l1 with above selected features
+
+![](img/final_linear_svc_best_cm.png){width=50%, fig-align="left"}
 
 
 ### Presentation Q&A preparation
