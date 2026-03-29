@@ -303,3 +303,10 @@ With resampled data to balance y classes, using all years data, recall as scorin
        'C4A_Never carried an unpaid balance (always pay in full)']
 
 ![](img/linear_svc_best_cm.png){width=50%, fig-align="left"}
+
+
+
+
+### Presentation Q&A preparation
+
+- 1. why using Linear SVC for feature selection instead of non-linear?
