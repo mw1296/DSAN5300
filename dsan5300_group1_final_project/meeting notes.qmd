@@ -237,6 +237,10 @@ lm(Y ~ X1 + X2, data = df, weights = weight)
 
 `SL6, I41_c, I41_e, A1_a, A1_b, A1_c, X12_a, X12_b, X12_c, X12_d, X12_e, X12_f, X12_g, EF5C`
 
-- 2. Model accuracy should be compared with baseline model and check F1, F2 error scores to make sure the accuracy is meaningfull.
+- 2. Model accuracy should be compared with baseline model and check confusion matrix (especially recall) to make sure the accuracy is meaningfull.
 
 `88% of 'No' in the BNPL1`. If predicting all as 'No', the model accuracy could achieve 88% but not meaningful.
+
+
+### Progress
+ - 1.
