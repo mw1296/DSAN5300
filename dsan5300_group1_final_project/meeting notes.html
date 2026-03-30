@@ -888,36 +888,71 @@ R3 | monthly rental expense paid by parent/spouse/partner/self | | |</div>
 <p>With resampled data to balance y classes, using all years data, recall as scoring in the feature selection, below are features selected that achieve over 90% accuracy with good precision and recall</p>
 <ul>
 <li><ol type="1">
-<li>Logistic model</li>
+<li>BNPL1 - Logistic model</li>
 </ol></li>
 </ul>
 <p><strong>selected features</strong></p>
 <p>[‘I20_Less than your income’, ‘I20_More than your income’, ‘I20_The same as your income’, ‘ppeducat_Bachelor’s degree or higher’, ‘ppeducat_High school graduate (high school diploma or the equivalent GED)’, ‘ppeducat_No high school diploma or GED’, ‘ppeducat_Some college or Associate’s degree’, ‘ppethm_2+ Races, Non-Hispanic’, ‘ppethm_Black, Non-Hispanic’, ‘ppethm_Hispanic’, ‘ppethm_Other, Non-Hispanic’, ‘ppethm_White, Non-Hispanic’, ‘ppinc7_$10,000 to $24,999’, ‘ppinc7_$100,000 to $149,999’, ‘ppinc7_$150,000 or more’, ‘ppinc7_$25,000 to $49,999’, ‘ppinc7_$50,000 to $74,999’, ‘ppinc7_$75,000 to $99,999’, ‘ppinc7_Less than $10,000’, ‘ppemploy_Not working’, ‘ppemploy_Working full-time’, ‘ppemploy_Working part-time’, ‘ppmarit5_Divorced’, ‘ppmarit5_Never married’, ‘ppmarit5_Now married’, ‘ppmarit5_Separated’, ‘ppmarit5_Widowed’, ‘ppagecat_18-24’, ‘ppagecat_25-34’, ‘ppagecat_35-44’, ‘ppagecat_45-54’, ‘ppagecat_55-64’, ‘ppagecat_65-74’, ‘ppagecat_75+’, ‘B3_About the same’, ‘B3_Much better off’, ‘B3_Much worse off’, ‘B3_Somewhat better off’, ‘B3_Somewhat worse off’, ‘A6_Don’t know’, ‘A6_Not confident’, ‘A6_Somewhat confident’, ‘A6_Very confident’]</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="img/logistic_regression_best_cm.png" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
+<p><img src="img/BNPL1_logistic_regression_best_cm.png" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
 </figure>
 </div>
 <ul>
 <li><ol start="2" type="1">
-<li>Linear SVC</li>
+<li>BNPL1 - Linear SVC</li>
 </ol></li>
 </ul>
 <p><strong>selected features</strong></p>
 <p>[‘EF3_d’, ‘EF3_f’, ‘I20_Less than your income’, ‘I20_More than your income’, ‘I20_The same as your income’, ‘ppeducat_Bachelor’s degree or higher’, ‘ppeducat_High school graduate (high school diploma or the equivalent GED)’, ‘ppeducat_No high school diploma or GED’, ‘ppeducat_Some college or Associate’s degree’, ‘ppethm_2+ Races, Non-Hispanic’, ‘ppethm_Black, Non-Hispanic’, ‘ppethm_Hispanic’, ‘ppethm_Other, Non-Hispanic’, ‘ppethm_White, Non-Hispanic’, ‘ppinc7_$10,000 to $24,999’, ‘ppinc7_$100,000 to $149,999’, ‘ppinc7_$150,000 or more’, ‘ppinc7_$25,000 to $49,999’, ‘ppinc7_$50,000 to $74,999’, ‘ppinc7_$75,000 to $99,999’, ‘ppinc7_Less than $10,000’, ‘ppemploy_Not working’, ‘ppemploy_Working full-time’, ‘ppemploy_Working part-time’, ‘ppmarit5_Divorced’, ‘ppmarit5_Never married’, ‘ppmarit5_Now married’, ‘ppmarit5_Separated’, ‘ppmarit5_Widowed’, ‘ppagecat_18-24’, ‘ppagecat_25-34’, ‘ppagecat_35-44’, ‘ppagecat_45-54’, ‘ppagecat_55-64’, ‘ppagecat_65-74’, ‘ppagecat_75+’, ‘ppfs1482_Don’t know’, ‘ppfs1482_Excellent’, ‘ppfs1482_Good’, ‘ppfs1482_Very poor’, ‘B3_About the same’, ‘B3_Much better off’, ‘B3_Much worse off’, ‘B3_Somewhat better off’, ‘B3_Somewhat worse off’, ‘A6_Don’t know’, ‘A6_Not confident’, ‘A6_Somewhat confident’, ‘A6_Very confident’, ‘C4A_Most or all of the time’, ‘C4A_Never carried an unpaid balance (always pay in full)’]</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="img/linear_svc_best_cm.png" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
+<p><img src="img/BNPL1_linear_svc_best_cm.png" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
 </figure>
 </div>
 <ul>
 <li><ol start="3" type="1">
-<li>Final SVC model including resampling, cv and l1 with above selected features</li>
+<li>BNPL1 - Final SVC model including resampling, cv and l1 with above selected features</li>
 </ol></li>
 </ul>
+<p>[‘EF3_c’, ‘EF3_d’, ‘EF3_e’, ‘EF3_f’, ‘EF3_h’, ‘ppkid017’, ‘I20_Less than your income’, ‘ppfs0596_$1,000,000 or more’, ‘ppfs0596_$250,000 - $499,999’, ‘ppfs0596_$500,000 - $999,999’, ‘ppfs0596_Under $50,000’, ‘ppeducat_No high school diploma or GED’, ‘ppethm_2+ Races, Non-Hispanic’, ‘ppethm_Other, Non-Hispanic’, ‘ppethm_White, Non-Hispanic’, ‘ppinc7_$10,000 to $24,999’, ‘ppinc7_$100,000 to $149,999’, ‘ppinc7_$150,000 or more’, ‘ppinc7_$75,000 to $99,999’, ‘ppinc7_Less than $10,000’, ‘ppmarit5_Divorced’, ‘ppmarit5_Never married’, ‘ppagecat_18-24’, ‘ppagecat_45-54’, ‘ppagecat_65-74’, ‘ppagecat_75+’, ‘ppfs1482_Excellent’, ‘ppfs1482_Fair’, ‘ppfs1482_Poor’, ‘ppfs1482_Very poor’, ‘B3_Much worse off’, ‘A6_Not confident’, ‘A6_Very confident’, ‘C4A_Most or all of the time’, ‘C4A_Never carried an unpaid balance (always pay in full)’, ‘C4A_Once’, ‘C4A_Some of the time’, ‘L0C_1’, ‘L0C_2’, ‘L0C_3’, ‘L0C_4’, ‘L0C_5 or more’]</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="img/final_linear_svc_best_cm.png" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
+<p><img src="img/BNPL1_final_linear_svc_best_cm.png" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
+</figure>
+</div>
+<ul>
+<li><ol start="4" type="1">
+<li>BNPL3 - Final Linear SVC model including resampling, cv and l1 with above selected features</li>
+</ol></li>
+</ul>
+<p>[‘EF3_c’, ‘EF3_d’, ‘EF3_e’, ‘EF3_f’, ‘EF3_h’, ‘ppkid017’, ‘I20_Less than your income’, ‘ppfs0596_$1,000,000 or more’, ‘ppfs0596_$250,000 - $499,999’, ‘ppfs0596_$500,000 - $999,999’, ‘ppfs0596_Under $50,000’, ‘ppeducat_No high school diploma or GED’, ‘ppethm_2+ Races, Non-Hispanic’, ‘ppethm_Other, Non-Hispanic’, ‘ppethm_White, Non-Hispanic’, ‘ppinc7_$10,000 to $24,999’, ‘ppinc7_$100,000 to $149,999’, ‘ppinc7_$150,000 or more’, ‘ppinc7_$75,000 to $99,999’, ‘ppinc7_Less than $10,000’, ‘ppmarit5_Divorced’, ‘ppmarit5_Never married’, ‘ppagecat_18-24’, ‘ppagecat_45-54’, ‘ppagecat_65-74’, ‘ppagecat_75+’, ‘ppfs1482_Excellent’, ‘ppfs1482_Fair’, ‘ppfs1482_Poor’, ‘ppfs1482_Very poor’, ‘B3_Much worse off’, ‘A6_Not confident’, ‘A6_Very confident’, ‘C4A_Most or all of the time’, ‘C4A_Never carried an unpaid balance (always pay in full)’, ‘C4A_Once’, ‘C4A_Some of the time’, ‘L0C_1’, ‘L0C_2’, ‘L0C_3’, ‘L0C_4’, ‘L0C_5 or more’]</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="img/BNPL3_linear_svc_best_cm.png" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
+</figure>
+</div>
+<ul>
+<li><ol start="5" type="1">
+<li>BNPL1 2024 - Linear SVC</li>
+</ol></li>
+</ul>
+<p><strong>selected features</strong></p>
+<p>[‘EF3_a’, ‘EF3_c’, ‘EF3_d’, ‘EF3_e’, ‘EF3_f’, ‘EF3_g’, ‘EF3_h’, ‘ppage’, ‘ppgender’, ‘ppkid017’, ‘EF1’, ‘A1_a’, ‘A1_b’, ‘A1_c’, ‘X12_b’, ‘X12_c’, ‘X12_d’, ‘X12_g’, ‘I20_Less than your income’, ‘ppfs0596_$1,000,000 or more’, ‘ppfs0596_$100,000 - $249,999’, ‘ppfs0596_$250,000 - $499,999’, ‘ppfs0596_$50,000 - $99,999’, ‘ppfs0596_$500,000 - $999,999’, ‘ppfs0596_Not sure’, ‘ppfs0596_Under $50,000’, ‘ppeducat_Bachelor’s degree or higher’, ‘ppeducat_High school graduate (high school diploma or the equivalent GED)’, ‘ppeducat_No high school diploma or GED’, ‘ppeducat_Some college or Associate’s degree’, ‘ppethm_2+ Races, Non-Hispanic’, ‘ppethm_Black, Non-Hispanic’, ‘ppethm_Hispanic’, ‘ppethm_Other, Non-Hispanic’, ‘ppethm_White, Non-Hispanic’, ‘ppinc7_$10,000 to $24,999’, ‘ppinc7_$150,000 or more’, ‘ppinc7_$25,000 to $49,999’, ‘ppinc7_$75,000 to $99,999’, ‘ppinc7_Less than $10,000’, ‘ppmarit5_Now married’, ‘ppmarit5_Separated’, ‘ppagecat_18-24’, ‘ppagecat_25-34’, ‘ppagecat_35-44’, ‘ppagecat_55-64’, ‘ppagecat_65-74’, ‘ppagecat_75+’, ‘ppfs1482_Don’t know’, ‘ppfs1482_Fair’, ‘ppfs1482_Good’, ‘ppfs1482_Poor’, ‘ppfs1482_Very poor’, ‘B3_About the same’, ‘B3_Much better off’, ‘B3_Much worse off’, ‘B3_Somewhat better off’, ‘B3_Somewhat worse off’, ‘A6_Don’t know’, ‘A6_Very confident’, ‘C4A_Most or all of the time’, ‘C4A_Never carried an unpaid balance (always pay in full)’, ‘C4A_Once’, ‘C4A_Some of the time’, ‘L0C_1’, ‘L0C_2’, ‘L0C_3’, ‘L0C_4’, ‘L0C_5 or more’]</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="img/2024_BNPL3_linear_svc_best_cm.png" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
+</figure>
+</div>
+<ul>
+<li><ol start="6" type="1">
+<li>BNPL1 2024 - Final Linear SVC model including resampling, cv and l1 with above selected features</li>
+</ol></li>
+</ul>
+<p>[‘EF3_a’, ‘EF3_c’, ‘EF3_d’, ‘EF3_e’, ‘EF3_f’, ‘EF3_g’, ‘EF3_h’, ‘ppage’, ‘ppgender’, ‘ppkid017’, ‘EF1’, ‘A1_a’, ‘A1_b’, ‘A1_c’, ‘X12_b’, ‘X12_c’, ‘X12_d’, ‘X12_g’, ‘I20_Less than your income’, ‘ppfs0596_$1,000,000 or more’, ‘ppfs0596_$100,000 - $249,999’, ‘ppfs0596_$250,000 - $499,999’, ‘ppfs0596_$50,000 - $99,999’, ‘ppfs0596_$500,000 - $999,999’, ‘ppfs0596_Not sure’, ‘ppfs0596_Under $50,000’, ‘ppeducat_Bachelor’s degree or higher’, ‘ppeducat_High school graduate (high school diploma or the equivalent GED)’, ‘ppeducat_No high school diploma or GED’, ‘ppeducat_Some college or Associate’s degree’, ‘ppethm_2+ Races, Non-Hispanic’, ‘ppethm_Black, Non-Hispanic’, ‘ppethm_Hispanic’, ‘ppethm_Other, Non-Hispanic’, ‘ppethm_White, Non-Hispanic’, ‘ppinc7_$10,000 to $24,999’, ‘ppinc7_$150,000 or more’, ‘ppinc7_$25,000 to $49,999’, ‘ppinc7_$75,000 to $99,999’, ‘ppinc7_Less than $10,000’, ‘ppmarit5_Now married’, ‘ppmarit5_Separated’, ‘ppagecat_18-24’, ‘ppagecat_25-34’, ‘ppagecat_35-44’, ‘ppagecat_55-64’, ‘ppagecat_65-74’, ‘ppagecat_75+’, ‘ppfs1482_Don’t know’, ‘ppfs1482_Fair’, ‘ppfs1482_Good’, ‘ppfs1482_Poor’, ‘ppfs1482_Very poor’, ‘B3_About the same’, ‘B3_Much better off’, ‘B3_Much worse off’, ‘B3_Somewhat better off’, ‘B3_Somewhat worse off’, ‘A6_Don’t know’, ‘A6_Very confident’, ‘C4A_Most or all of the time’, ‘C4A_Never carried an unpaid balance (always pay in full)’, ‘C4A_Once’, ‘C4A_Some of the time’, ‘L0C_1’, ‘L0C_2’, ‘L0C_3’, ‘L0C_4’, ‘L0C_5 or more’]</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="img/2024_BNPL3_final_linear_svc_best_cm.png" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
 </figure>
 </div>
 </section>
