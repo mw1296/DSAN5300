@@ -379,7 +379,7 @@ With resampled data to balance y classes, using all years data, recall as scorin
        'C4A_Some of the time', 'L0C_1', 'L0C_2', 'L0C_3', 'L0C_4',
        'L0C_5 or more']
 
-![](img/2024_BNPL3_linear_svc_best_cm){width=50%, fig-align="left"}
+![](img/2024_BNPL1_linear_svc_best_cm){width=50%, fig-align="left"}
 
 
  - 6. BNPL1 2024 - Final Linear SVC model including resampling, cv and l1 with above selected features
@@ -410,7 +410,42 @@ With resampled data to balance y classes, using all years data, recall as scorin
        'C4A_Some of the time', 'L0C_1', 'L0C_2', 'L0C_3', 'L0C_4',
        'L0C_5 or more']
 
+![](img/2024_BNPL1_final_linear_svc_best_cm){width=50%, fig-align="left"}
+
+ - 7. BNPL3 2024 - Linear SVC
+
+**selected features**
+
+['EF3_c', 'I41_c', 'A1_a', 'A1_c', 'EF5C', 'I20_Less than your income',
+       'I20_More than your income', 'ppfs0596_$250,000 - $499,999',
+       'ppfs0596_$50,000 - $99,999', 'ppfs0596_$500,000 - $999,999',
+       'ppethm_Hispanic', 'ppethm_Other, Non-Hispanic',
+       'ppethm_White, Non-Hispanic', 'ppinc7_$150,000 or more',
+       'ppinc7_$75,000 to $99,999', 'ppinc7_Less than $10,000',
+       'ppemploy_Working full-time', 'ppemploy_Working part-time',
+       'ppmarit5_Never married', 'ppmarit5_Separated', 'ppagecat_35-44',
+       'ppagecat_65-74', 'ppfs1482_Don’t know', 'ppfs1482_Good',
+       'ppfs1482_Poor', 'B3_Much worse off', 'B3_Somewhat better off',
+       'A6_Don’t know', 'C4A_Most or all of the time', 'C4A_Once', 'L0C_3']
+
+![](img/2024_BNPL3_linear_svc_best_cm){width=50%, fig-align="left"}
+
+ - 8. BNPL3 2024 - Final Linear SVC model including resampling, cv and l1 with above selected features
+
+['EF3_c', 'I41_c', 'A1_a', 'A1_c', 'EF5C', 'I20_Less than your income',
+       'I20_More than your income', 'ppfs0596_$250,000 - $499,999',
+       'ppfs0596_$50,000 - $99,999', 'ppfs0596_$500,000 - $999,999',
+       'ppethm_Hispanic', 'ppethm_Other, Non-Hispanic',
+       'ppethm_White, Non-Hispanic', 'ppinc7_$150,000 or more',
+       'ppinc7_$75,000 to $99,999', 'ppinc7_Less than $10,000',
+       'ppemploy_Working full-time', 'ppemploy_Working part-time',
+       'ppmarit5_Never married', 'ppmarit5_Separated', 'ppagecat_35-44',
+       'ppagecat_65-74', 'ppfs1482_Don’t know', 'ppfs1482_Good',
+       'ppfs1482_Poor', 'B3_Much worse off', 'B3_Somewhat better off',
+       'A6_Don’t know', 'C4A_Most or all of the time', 'C4A_Once', 'L0C_3']
+
 ![](img/2024_BNPL3_final_linear_svc_best_cm){width=50%, fig-align="left"}
+
 
 ### Presentation Q&A preparation
 
