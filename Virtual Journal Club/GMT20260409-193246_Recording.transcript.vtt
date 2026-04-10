@@ -1,0 +1,1014 @@
+WEBVTT
+
+1
+00:00:00.270 --> 00:00:01.110
+Yu Cheng: Okay.
+
+2
+00:00:04.660 --> 00:00:09.570
+Yu Cheng: Alright, one sec. Let me make the backup recording. Sorry for that.
+
+3
+00:00:09.790 --> 00:00:10.390
+Yu Cheng: One sec.
+
+4
+00:00:10.390 --> 00:00:11.210
+Mengjia Wei: Alright.
+
+5
+00:00:11.710 --> 00:00:13.399
+Mengjia Wei: Let's get started.
+
+6
+00:00:14.180 --> 00:00:16.090
+Mengjia Wei: Let me share my screen.
+
+7
+00:00:25.920 --> 00:00:28.790
+Mengjia Wei: I assume you guys can all see my screen.
+
+8
+00:00:29.770 --> 00:00:37.200
+Mengjia Wei: Hello, everyone! Thanks for signing up to our session, and thanks for joining today.
+
+9
+00:00:37.380 --> 00:00:51.119
+Mengjia Wei: Today, Choi and I are presenting a paper on explainable artificial intelligence, or XAI. I'm sure you already read this article. This article is published in one of the most pretigious, journals in computer science.
+
+10
+00:00:51.210 --> 00:01:03.170
+Mengjia Wei: It's the most fundamental, paper for modern XA area. It's heavily cited, nearly a thousand citations since the publication in 2023.
+
+11
+00:01:03.290 --> 00:01:16.480
+Mengjia Wei: The reason we selected this paper, is that XAI methodology is very trendy right now, it's highly practical, it has been, adopted by many big, banks, for example, JP Morgan.
+
+12
+00:01:16.480 --> 00:01:26.230
+Mengjia Wei: It provides data scientists a tool to move from simply saying what a model predicts to understanding the logic and the feature that drove the output.
+
+13
+00:01:27.420 --> 00:01:33.980
+Mengjia Wei: Before we get into XOI, I want to establish why it exists in the first place.
+
+14
+00:01:34.090 --> 00:01:46.119
+Mengjia Wei: If we think about… think back about all the models that we've been, using and learned in our data science courses, they can be essentially grouped into white box models or black box models.
+
+15
+00:01:46.290 --> 00:01:53.960
+Mengjia Wei: Models include, logist regression, linear regression, decision trees, these are what we call white box models.
+
+16
+00:01:54.090 --> 00:02:00.399
+Mengjia Wei: Because the… these models' output are completely visible and very easy to explain.
+
+17
+00:02:00.570 --> 00:02:16.739
+Mengjia Wei: For example, with logistic regression, every coefficient directly tells us how much a feature shifts the prediction. With a decision tree, we can trace any prediction from the root node all the way to the leaf.
+
+18
+00:02:16.850 --> 00:02:20.020
+Mengjia Wei: And read the logic step-by-step.
+
+19
+00:02:20.370 --> 00:02:36.179
+Mengjia Wei: These models can explain themselves pretty well, no actual interpretation needed. In contrast, if you look at the right hand, neural networks and ensemble methods, like XGBoost and Random Forest, are what we call black box models.
+
+20
+00:02:36.350 --> 00:02:40.859
+Mengjia Wei: Because the behavior of the model are not transparent.
+
+21
+00:02:41.160 --> 00:02:48.890
+Mengjia Wei: A neural network, for example, might have millions of weights distributed across the hidden layers and neurons.
+
+22
+00:02:49.020 --> 00:02:53.559
+Mengjia Wei: There is no human readable path from input to the output.
+
+23
+00:02:54.060 --> 00:03:01.370
+Mengjia Wei: You read the data, you get a prediction, but the internal computation is completely opaque.
+
+24
+00:03:01.840 --> 00:03:21.169
+Mengjia Wei: Xgboost works similarly, even though we can finally, let models return the tree, but even though individual trees, pass, there's a path for us to trace individual trees, but the entire, ensemble as a whole is not visible.
+
+25
+00:03:21.770 --> 00:03:29.119
+Mengjia Wei: And here is the core tension that XAI is built around. It provides data scientists a workflow to follow.
+
+26
+00:03:29.280 --> 00:03:36.929
+Mengjia Wei: In order to select the right method to use, to shed light on the behaviors of the black box model's output.
+
+27
+00:03:37.480 --> 00:03:46.479
+Mengjia Wei: Before getting into, the XAI, I do want to explain, why the accuracy in, alone is not enough.
+
+28
+00:03:46.580 --> 00:03:56.070
+Mengjia Wei: So we might be able to build a model and achieve a 96% accuracy score, for example, but we can still be wrong with the explanation.
+
+29
+00:03:56.310 --> 00:04:13.619
+Mengjia Wei: If we look at this metrics and focus on the right top corner, this is the critical zone which defines an explanation of the model output. Imagine we were a data scientist helping with a cancer diagnosis, working in the medical diagnosis area.
+
+30
+00:04:13.840 --> 00:04:31.199
+Mengjia Wei: In addition to predicting whether a cell is a cancer cell, we should also provide a supportive explanation. For example, we can say this cell is flagged as a cancer cell because of its irregular border.
+
+31
+00:04:31.830 --> 00:04:34.830
+Mengjia Wei: So…
+
+32
+00:04:35.680 --> 00:04:47.160
+Mengjia Wei: that's, that's, that's where the XAI, comes along. So if we look at the, the role of XAI and where it sits in the MLOps model.
+
+33
+00:04:47.220 --> 00:04:57.270
+Mengjia Wei: This is a much simplified MLOps diagram. What we have been practicing as a data scientist is in the blue area.
+
+34
+00:04:57.400 --> 00:05:15.069
+Mengjia Wei: That's something we've been very familiar with. We, collect the data, feed the model with the data, run the model, train the model, tune the model, and, come up with a prediction. And we can finally select a model that gives us the best predictive score.
+
+35
+00:05:15.420 --> 00:05:32.090
+Mengjia Wei: Then the XAI comes along, which is colored in the yellow area, after we've already finished the model building. We feed XAI with the new data, and then we try to use other methods to explain
+
+36
+00:05:32.090 --> 00:05:38.240
+Mengjia Wei: The output of the black box model in order to shed some light, for the explanation.
+
+37
+00:05:39.440 --> 00:05:47.249
+Mengjia Wei: Taxonomy of XLI techniques, this is probably one of the most important things developed by this literature.
+
+38
+00:05:47.250 --> 00:06:04.399
+Mengjia Wei: So essentially, what this table tells us is that, the other groups, all these methods you can see here into, by three dimensions. So the first dimension is, are we trying to do global interpretation or local interpretation?
+
+39
+00:06:04.560 --> 00:06:18.840
+Mengjia Wei: Global interpretation means that we try to explain the whole model behavior using the entire dataset. For example, we try to understand what features drive the output and what features are highly correlated to the prediction, by how much.
+
+40
+00:06:19.160 --> 00:06:30.869
+Mengjia Wei: Local interpretation, on the other hand, means we try to develop, we try to explain, one single prediction. For example, why the tree makes specific split.
+
+41
+00:06:31.820 --> 00:06:41.100
+Mengjia Wei: The second dimension is white box versus black box, something we've discussed, meaning whether the model behavior is transparent or not.
+
+42
+00:06:41.230 --> 00:06:55.980
+Mengjia Wei: The third dimension is, whether the model… whether the method is model-dependent or not. Model-dependent means that the method… certain methods can only be used along with certain models, like neural networks or trees model.
+
+43
+00:06:56.040 --> 00:07:01.599
+Mengjia Wei: Model agnostic means that this method can be used with any types of models.
+
+44
+00:07:03.220 --> 00:07:22.299
+Mengjia Wei: For the sake of the time, we are unable to explain all of them, but we do… Choi and I are going to cover, on a high level, some of the methods that is being highly discussed in this literature. So the first, method I want to cover is the integrated gradients.
+
+45
+00:07:22.380 --> 00:07:37.759
+Mengjia Wei: So what this does is that, so first of all, integrated gradients can only be used with neural networks, especially with the, pixel-level image data, or the token-level natural language processing data.
+
+46
+00:07:37.780 --> 00:07:44.449
+Mengjia Wei: So what this does is that it tries to assign each feature's importance using a score.
+
+47
+00:07:44.680 --> 00:07:55.200
+Mengjia Wei: If you look at the example here at the bottom, this is an image, and the neural network model predicts this image to be a shirt with a certain accuracy.
+
+48
+00:07:55.860 --> 00:08:15.540
+Mengjia Wei: Integrated gradients, so what integrated gradient does is that it tries to tell us on the pixel level, on the image, whether they positively or negatively drive toward the decision from the model output.
+
+49
+00:08:15.700 --> 00:08:30.300
+Mengjia Wei: So if you look at this collar area and the sleeves area here, those pixels are colored in green, means that these pixels contribute positively toward the prediction of the model.
+
+50
+00:08:30.300 --> 00:08:42.429
+Mengjia Wei: But the torso area in the middle are colored in pink, means these pixels are driving the prediction to… it drives negatively toward the prediction.
+
+51
+00:08:42.429 --> 00:09:00.770
+Mengjia Wei: The rationale behind that is that collar and sleeves are very correlated with the shape of the shirt, but the middle area is not necessarily related to the shirt, it is also… it can also be part of the jeans or trousers.
+
+52
+00:09:01.690 --> 00:09:04.339
+Mengjia Wei: So this is the idea of integrated gradient.
+
+53
+00:09:04.430 --> 00:09:18.049
+Mengjia Wei: The second method that I want to, review, is SHOP. I'm sure a lot of us have already heard about it or used about it. SHOP, stands for Sharply Addictive Explanation.
+
+54
+00:09:18.050 --> 00:09:31.600
+Mengjia Wei: So, the idea is similar as integrated gradient, but it… from a different, level or perspective. So, what Sharp gave us is…
+
+55
+00:09:31.640 --> 00:09:38.680
+Mengjia Wei: For each feature, it tells the feature's marginal contribution toward the prediction.
+
+56
+00:09:38.810 --> 00:09:45.299
+Mengjia Wei: So for example, if you look at this example on the right hand, this is a loan denial case.
+
+57
+00:09:45.460 --> 00:09:53.150
+Mengjia Wei: So the model predicts that there is 85% of chance we should deny this, applicant's loan application.
+
+58
+00:09:53.870 --> 00:10:02.970
+Mengjia Wei: So, the models start with a baseline of 0.5, means there's 50% either, approve or deny this case.
+
+59
+00:10:03.360 --> 00:10:09.350
+Mengjia Wei: Sharp returns sharply value for all the, important features.
+
+60
+00:10:09.490 --> 00:10:13.270
+Mengjia Wei: For example, that ratio.
+
+61
+00:10:13.310 --> 00:10:21.230
+Mengjia Wei: Drives the prediction up by 20, by 22 points toward, denial.
+
+62
+00:10:21.260 --> 00:10:30.270
+Mengjia Wei: Credit score drives the prediction up by 14 points toward denial. Loan amount drives it up by 8 points.
+
+63
+00:10:30.270 --> 00:10:41.870
+Mengjia Wei: Even though income at age drives the prediction down toward approval, a little bit, but isn't able to cancel the effect from the other factors.
+
+64
+00:10:42.080 --> 00:10:56.599
+Mengjia Wei: So, these are the Shapley values. If we add these values together, it comes up to 35 points, and if we add it back to the .5, it comes up to 85. So that's how the .85 is calculated.
+
+65
+00:10:57.710 --> 00:11:05.490
+Mengjia Wei: Okay, so now I'm gonna hand it over to Choi to introduce other methods, discussed in this article.
+
+66
+00:11:05.910 --> 00:11:14.859
+Yu Cheng: Okay, so for the third method we want to introduce is Lime. It's a more simpler and more lightweight alternative.
+
+67
+00:11:14.960 --> 00:11:33.020
+Yu Cheng: So Lime is short for Local Interpretable Model Agnostic Explanations. Like, SHARP explains individual predictions, but where SHARP uses game theory, LIME uses a much simpler idea. If you want to understand…
+
+68
+00:11:33.310 --> 00:11:46.240
+Yu Cheng: How a black box model behaves near one specific data point. Build a simple interpretable model, a linear regression, that approximates the black box in that local neighborhood.
+
+69
+00:11:46.260 --> 00:11:56.849
+Yu Cheng: The process has four steps. So first, take the one data point you want to expand, take the sharp example, say, one specific loan applicant.
+
+70
+00:11:57.000 --> 00:12:11.560
+Yu Cheng: And second, perturb the data point hundreds of times, slightly vary the age, the income, and the debt ratio, and run age-perturbed version through the black box model to collect predictions.
+
+71
+00:12:11.560 --> 00:12:24.729
+Yu Cheng: And third, fade a model linear model on those perturbed samples, weighting them by how similar they are to the original data point. And fourth.
+
+72
+00:12:24.930 --> 00:12:34.359
+Yu Cheng: The last step, read the coefficients of that linear model. Those are the feature contributions for that single prediction.
+
+73
+00:12:34.530 --> 00:12:45.720
+Yu Cheng: And we can also use this process, work through this cat picture example. So first, we start with the original image. In this case, it's a cat.
+
+74
+00:12:46.000 --> 00:12:58.700
+Yu Cheng: Then line breaks the image into interpretable regions of pixels. This is a segmentation step, so instead of looking at individual pixels.
+
+75
+00:12:58.770 --> 00:13:06.299
+Yu Cheng: it groups them into meaningful parts of the image. For example, the face, the background, and the body.
+
+76
+00:13:07.270 --> 00:13:20.179
+Yu Cheng: Next comes, the most important step, perturbation, perturbation. Lime creates many slightly modified versions of the image by turning some regions on and off.
+
+77
+00:13:20.310 --> 00:13:26.690
+Yu Cheng: Then it faces variations into the model and observes how this prediction changes.
+
+78
+00:13:27.120 --> 00:13:34.009
+Yu Cheng: So, essentially, it is testing, if I remove this part of the image, does the prediction change?
+
+79
+00:13:34.120 --> 00:13:36.210
+Yu Cheng: Finally, line phase,
+
+80
+00:13:36.320 --> 00:13:44.610
+Yu Cheng: Simple local linear model to approximate the behavior of black box model around the specific image.
+
+81
+00:13:45.350 --> 00:13:57.389
+Yu Cheng: The result is what we can see here. Only certain regions are highlighted. These are the parts of the image that contributed most to the prediction of, this is a cat.
+
+82
+00:13:57.800 --> 00:14:09.010
+Yu Cheng: So the key idea is Lyme doesn't try to understand the whole model. It only expands this one decision by approximating the model locally.
+
+83
+00:14:09.150 --> 00:14:17.469
+Yu Cheng: compared to the method of shock, Lime is faster, and it works on any model. It's not model-dependent.
+
+84
+00:14:17.520 --> 00:14:35.849
+Yu Cheng: But it also has two significant weaknesses. First, stability. If you run line twice on the same instance, you may get different feature weights, because the neighborhood is defined arbitrarily, and the sampling introduces randomness.
+
+85
+00:14:36.560 --> 00:14:50.680
+Yu Cheng: So, the results is kind of unstable. Secondly, it offers no additivity guarantee. So, like, unlike Sharp, its weights don't necessarily sound to anything meaningful, just like the
+
+86
+00:14:50.830 --> 00:14:53.340
+Yu Cheng: 85 thing.
+
+87
+00:14:53.930 --> 00:15:10.710
+Yu Cheng: So, the practical rule is use Lime for quick for the ADA stage, interactive exploration, when we are trying to get a rough sense of what's driving the prediction, and use Sharp for anything you are going to report
+
+88
+00:15:10.840 --> 00:15:19.349
+Yu Cheng: to a stakeholder or attend an audit trial. SHARP is a stable and mathematically guaranteed. Lime is not.
+
+89
+00:15:19.670 --> 00:15:21.459
+Yu Cheng: That's… that's life, please.
+
+90
+00:15:25.210 --> 00:15:27.290
+Yu Cheng: So,
+
+91
+00:15:28.140 --> 00:15:46.189
+Yu Cheng: We also got other explanation methods. Here is the PDP, ICE, and ALE, and we are gonna make a very simple comparison of these three methods. So let's start with the PDP on the left.
+
+92
+00:15:46.360 --> 00:15:50.269
+Yu Cheng: The PDP is short for Partial Dependence Plots.
+
+93
+00:15:50.510 --> 00:15:53.370
+Yu Cheng: It is a global explanation method.
+
+94
+00:15:53.510 --> 00:16:01.450
+Yu Cheng: shows the average effect of a feature on the model's predictions. So here, on the x-axis.
+
+95
+00:16:01.830 --> 00:16:21.729
+Yu Cheng: We have the feature value, and on the y-axis, we have the predicted outcome. The curve tells us, as the feature's value increases, how does the prediction change on average? So PDP gives us a clean, simple global trend, but it is only an average. However, PDP has a
+
+96
+00:16:22.080 --> 00:16:25.539
+Yu Cheng: very important limitation. It assumes that
+
+97
+00:16:25.760 --> 00:16:31.690
+Yu Cheng: All the features are independent, which is often not true in the real-world data, right?
+
+98
+00:16:32.060 --> 00:16:45.089
+Yu Cheng: So, while PDP is useful for understanding general trends, we need to be cautious because features are highly correlated. So the key takeaway of this PDP method is
+
+99
+00:16:45.390 --> 00:16:48.830
+Yu Cheng: it can answer this question. So, how does this…
+
+100
+00:16:48.950 --> 00:16:59.010
+Yu Cheng: feature effect predictions overall. It's an average sense of this feature's effect on the predictions, on the final outcome.
+
+101
+00:16:59.640 --> 00:17:14.120
+Yu Cheng: And now we can move to the middle, the ICE plot. The ICE means individual condition… conditional expectation. We can see what's actually behind the average.
+
+102
+00:17:14.540 --> 00:17:32.479
+Yu Cheng: Instead of the single curve, like PDP, I see it shows a one line per data… per data point. So each line represents how the prediction changes for a specific instance. And now we can say something important. Not all data points behave the same way.
+
+103
+00:17:32.610 --> 00:17:51.109
+Yu Cheng: Some lines goes down sharply, and others stay relatively flat. So, ICE reveals the heterogeneity that PDP hides. PDP shows the average, but ICE shows that variation. It's a detailed version of PDP.
+
+104
+00:17:51.390 --> 00:17:54.500
+Yu Cheng: And finally, on the right, we have ALE method.
+
+105
+00:17:54.780 --> 00:18:01.509
+Yu Cheng: which is accumulated local effects. You can think of ALE as an improved version of PDP.
+
+106
+00:18:01.590 --> 00:18:21.000
+Yu Cheng: The key differences is ALE doesn't assume the features were independent. In real-world data, features are often correlated, and PDP can give misleading results in that case. ALE corrects this by marrying local changes instead of global averages.
+
+107
+00:18:21.380 --> 00:18:33.319
+Yu Cheng: So it gives me more reliable global explanation when features interact with each other. It's more robust in realistic settings.
+
+108
+00:18:33.550 --> 00:18:34.910
+Yu Cheng: Next slide, please.
+
+109
+00:18:37.460 --> 00:18:46.450
+Yu Cheng: So, overall, We introduced this, we introduced six explanation methods for
+
+110
+00:18:46.460 --> 00:19:01.990
+Yu Cheng: our ML models, but before we wrap up, I just want to clarify one important point. These methods we introduce, like sharp, line, PDP, and integrity gradients, they are just not…
+
+111
+00:19:02.320 --> 00:19:14.619
+Yu Cheng: Python packages. They are fundamentally algorithms or explanation methods. The libraries we use are just implementations of these ideas.
+
+112
+00:19:15.040 --> 00:19:22.160
+Yu Cheng: So now this… Diagram summarizes how we choose between these methods in practice.
+
+113
+00:19:22.500 --> 00:19:42.450
+Yu Cheng: The first question is very simple, like, what are you trying to explain? Are you trying to understand the whole model, or are you… or just one specific prediction? If you care about the whole model, for example, which features matter overall, then use the global methods on the left hand.
+
+114
+00:19:42.910 --> 00:19:47.259
+Yu Cheng: For a tree-based model, like, actually boast or random forests.
+
+115
+00:19:47.450 --> 00:19:55.099
+Yu Cheng: tree sharp is actually the best choice. For general models, we can use methods like PDP or ALE.
+
+116
+00:19:55.640 --> 00:20:01.720
+Yu Cheng: And if the features are highly correlated, we can choose the ALE instead of the PDP.
+
+117
+00:20:01.840 --> 00:20:17.700
+Yu Cheng: On the other hand, if you want to explain one specific prediction, then we move to local methods. For neural networks, we often use integrity gradients. For general black box model, we use LIME or SHOP.
+
+118
+00:20:18.380 --> 00:20:27.550
+Yu Cheng: And then it depends on the question, like, do you want to ask, why did this happen? You want to know the reason, or you want to ask
+
+119
+00:20:27.690 --> 00:20:31.920
+Yu Cheng: What if something changes? What if this change
+
+120
+00:20:31.980 --> 00:20:48.599
+Yu Cheng: And what's the effect on the final predictions? If you ask the reason, the why question, we use the methods like sharp, but if you ask the what-if question, we use the counterfactual-based methods, like Lyme, we just mentioned.
+
+121
+00:20:49.040 --> 00:20:50.310
+Yu Cheng: That's the libraries.
+
+122
+00:20:53.520 --> 00:21:11.639
+Yu Cheng: And this is a more practical slide, the decision guide. This is a more detailed version of the decision path we just showed you. If you are running into any of this, you can search for the corresponding packages and do some exploration on your VS Code.
+
+123
+00:21:11.930 --> 00:21:18.110
+Yu Cheng: And, you can see all the conditional, factors are listed here.
+
+124
+00:21:18.960 --> 00:21:26.920
+Yu Cheng: And you can do your own explorations, and that's all. We're gonna jump into the Q&A section.
+
+125
+00:21:34.720 --> 00:21:37.169
+Mengjia Wei: Oh, thanks, Troy.
+
+126
+00:21:37.700 --> 00:21:46.140
+Mengjia Wei: now I think we can get into the, the discussions and, be open up to any questions that you have.
+
+127
+00:21:46.280 --> 00:21:49.859
+Mengjia Wei: For the content that we covered in this presentation.
+
+128
+00:21:52.380 --> 00:22:09.989
+Mengjia Wei: Or if you want to start with sharing your feelings about this article, do you like it? Is this method useful for you? Do you have any experience using any of those? That's okay, be glad to hear about your feeling.
+
+129
+00:22:14.240 --> 00:22:20.319
+Yu Cheng: I know it's a lot of new concepts in a very short time, and it's totally new to me.
+
+130
+00:22:21.080 --> 00:22:36.319
+Mengjia Wei: Yeah, I can start jumping in and share my feeling about this article. I'm, so this is really eye-opening to me. I know that I heard and used some of these methods, like shop that I used before.
+
+131
+00:22:36.320 --> 00:22:50.810
+Mengjia Wei: to explain my decision tree model. I happened to use Sharp to explain my decision tree model, but I really… back then, I didn't really have this connection. I didn't know that tree shop model is used along with decision and decision tree model, and try to explain
+
+132
+00:22:50.810 --> 00:23:08.379
+Mengjia Wei: the output of it, and I didn't have any idea about, the black box versus white box model. For example, I can run a neural network, model, and then I gotta hire Chrissy, I'll be happy about it. Now, I… now I have this method, I feel like it's a secret weapon for me.
+
+133
+00:23:08.460 --> 00:23:26.710
+Mengjia Wei: I can just, follow the diagram, the logic flow, to, you know, further develop and, you know, the visualization to try to understand the output of my models to justify the decision. So,
+
+134
+00:23:26.870 --> 00:23:31.599
+Mengjia Wei: I feel very confident, now that I have the knowledge about it now.
+
+135
+00:23:35.000 --> 00:23:38.730
+Erin Bevec: Yeah, I can, I can jump in. Oh, sorry, go ahead, you're good.
+
+136
+00:23:38.730 --> 00:23:57.429
+Alexander Garcia: Oh, oh, no, I guess the question I had was, do you think, XAI… does it help reduce bias within your models, or do you think it's more so just explaining your bias, and that helps you fine-tune down the line?
+
+137
+00:24:01.190 --> 00:24:12.630
+Mengjia Wei: Well, I mean, yeah, let's… so, this is really a panel for us to discuss together, so everybody can jump in and answer the questions and share, your thought here.
+
+138
+00:24:12.630 --> 00:24:23.259
+Mengjia Wei: I can share some of my thoughts. So, for example, on the, ALE, chart, in the ICE chart shared by Choi, then that you can see.
+
+139
+00:24:23.260 --> 00:24:28.079
+Mengjia Wei: And also the shop model, now you can see what features are making what contributions.
+
+140
+00:24:28.080 --> 00:24:34.230
+Mengjia Wei: So if you see, like, okay, there's one feature, one… two features that is… that's contributing to the result.
+
+141
+00:24:34.230 --> 00:24:56.000
+Mengjia Wei: Or maybe you see there's a hundred features that are contributing results, so maybe there is a high bias there, because you're probably overfeeding the model with so many features, so this probably is one, you know, flag for me to, you know, think more about it if my, test score is low.
+
+142
+00:24:56.000 --> 00:25:01.050
+Mengjia Wei: Right? So I think definitely it helps.
+
+143
+00:25:04.230 --> 00:25:07.519
+Yu Cheng: Yeah, and also, one more thing to add is, like.
+
+144
+00:25:07.760 --> 00:25:14.610
+Yu Cheng: Because the black box model is so weird today, and you may get a model that
+
+145
+00:25:14.670 --> 00:25:29.630
+Yu Cheng: Actually, today's weather is the most important factor to predict, my income level, you know, and without any explanation of it. So, as AI is actually doing this thing,
+
+146
+00:25:29.730 --> 00:25:47.359
+Yu Cheng: you can't say it's biased, because today's weather temperature is totally unrelated to my income level, right? But with XAI tools, we can do some explanations with a white model, a white box model, like, we can…
+
+147
+00:25:47.360 --> 00:25:57.079
+Yu Cheng: Find, like, how much we adjust, today's temperature thing to affect my income level, the prediction.
+
+148
+00:25:57.200 --> 00:26:00.250
+Yu Cheng: So it's more like a explanation method.
+
+149
+00:26:03.390 --> 00:26:10.080
+Samuel Villarreal: Following up on what you were saying, you… I was wondering, like, I know the authors mentioned that
+
+150
+00:26:11.230 --> 00:26:27.940
+Samuel Villarreal: the, like, more interpretable results or models often sacrifice predictive performance. So, is there, like, sort of this, like, benchmark that does prioritize explainability and doesn't risk any…
+
+151
+00:26:28.220 --> 00:26:33.289
+Samuel Villarreal: Overshooting, if we want to call it that way, because there's no, like, universal standard for this.
+
+152
+00:26:33.650 --> 00:26:35.039
+Samuel Villarreal: If that makes sense.
+
+153
+00:26:36.190 --> 00:26:37.070
+Yu Cheng: Yeah.
+
+154
+00:26:37.550 --> 00:26:39.669
+Yu Cheng: But we're still trying… yeah.
+
+155
+00:26:39.670 --> 00:26:44.840
+Samuel Villarreal: Yeah, like, if there's, like, a benchmark, or, like, how can… how could…
+
+156
+00:26:45.030 --> 00:26:49.890
+Samuel Villarreal: Researchers or practitioners, like, know where the middle point is.
+
+157
+00:26:51.010 --> 00:27:01.799
+Yu Cheng: But, yeah, I know what you mean, man. So, like, there's always a conflict between the interpretability and the explainability, but…
+
+158
+00:27:02.050 --> 00:27:19.840
+Yu Cheng: there's also a rule called My Best Knowledge Rule. So, like, at my best knowledge and my best, knowledge of using these tools to expand this black box model, how far we can go.
+
+159
+00:27:19.940 --> 00:27:39.879
+Yu Cheng: So, like, the XAI is actually doing the thing. So, you can train our model, you can, do it as a practical way, but the explanation method, explanation part is necessary for, for the whole data processing and prediction, process. So, like.
+
+160
+00:27:40.780 --> 00:27:51.369
+Yu Cheng: We can still do our, maximum ability to explain the model we just trained, and not just leave it like that.
+
+161
+00:27:51.800 --> 00:27:56.049
+Yu Cheng: So, it's kind of, efforts we need to make.
+
+162
+00:27:58.700 --> 00:28:02.269
+Yu Cheng: And it's also for the… yeah, sorry, it'll…
+
+163
+00:28:02.270 --> 00:28:16.399
+Erin Bevec: Oh, you're good, yeah, I just think it's super, like, high value for… I don't know, I work in consulting, and, like, 9 times out of 10, the hardest job… part of my job is not, like, writing code or doing any math, it's, like, actually explaining to…
+
+164
+00:28:16.700 --> 00:28:36.600
+Erin Bevec: stakeholders, like, what the… what's actually going on, right? Like, what are we… what is the model actually doing, and, you know, how… how… how is it getting there? And it's becoming, like, increasingly difficult to do that with, like, large language models, specifically, as it's kind of, you know, the… the zeitgeist right now, so I think it's… I think it's a really good…
+
+165
+00:28:36.740 --> 00:28:47.839
+Erin Bevec: thing that we are… or that someone, the authors here, are, like, pressing on the, like, observability and explainability layer, because that stuff is just, like, super important with…
+
+166
+00:28:48.020 --> 00:28:48.950
+Erin Bevec: you know.
+
+167
+00:28:49.700 --> 00:28:56.560
+Erin Bevec: models that are being increasingly difficult to QA and, like, explain. So, I thought it was a super cool approach.
+
+168
+00:28:57.410 --> 00:29:12.670
+Mengjia Wei: Yeah, I definitely agree with you, especially when we're working in some areas like, medical diagnosis and, those critical areas, like legal, setting up the laws, and also, insurance pricing, credit lending.
+
+169
+00:29:12.670 --> 00:29:25.600
+Mengjia Wei: Sometimes, most of the time, we're demanded to provide an explanation, even though we probably don't have to immediately after we make a decision, but we should have this kind of explanation, on the book.
+
+170
+00:29:25.600 --> 00:29:43.480
+Mengjia Wei: to be ready for the compliance purpose, right? So, for example, we want to turn down a credit card application for a user, we don't necessarily disclose why we turned it down on him or her, but if we got asked, we got to have a reason why, so…
+
+171
+00:29:43.480 --> 00:29:48.880
+Mengjia Wei: A lot of time, it's unoptional for us to provide explanation.
+
+172
+00:29:50.600 --> 00:29:55.650
+Alison Manna: I had a question for you guys, sorry to interrupt.
+
+173
+00:29:55.770 --> 00:30:03.349
+Alison Manna: Just a question about, like, the… we keep using the language, like, white box, white box, black box, but I'm curious, like.
+
+174
+00:30:03.800 --> 00:30:17.369
+Alison Manna: and maybe I missed this in the paper, is the kind of line that they draw between white and black spots, is that, like, a threshold set more by the authors of this paper, or is there kind of…
+
+175
+00:30:17.740 --> 00:30:23.940
+Alison Manna: like, an accepted standard way of defining those, and I only ask that because, like, when I think of, like.
+
+176
+00:30:24.080 --> 00:30:26.929
+Alison Manna: model complexity and interpretability, I…
+
+177
+00:30:27.010 --> 00:30:31.760
+Alison Manna: In my mind, it feels more appropriate to look at it more like a spectrum, like.
+
+178
+00:30:31.770 --> 00:30:51.540
+Alison Manna: obviously still with things like, you know, the neural networks on one end, and things like, logistic regression on the other, but I'm just curious if you guys, like, happen to read up on that, or know if, like, there is maybe a kind of middle brown or gray area in the field when it comes to, like.
+
+179
+00:30:52.370 --> 00:30:55.709
+Alison Manna: Like, a hypothetical gray box model.
+
+180
+00:30:56.770 --> 00:30:59.260
+Mengjia Wei: Toy, you wanna take this, or you want me to?
+
+181
+00:31:00.150 --> 00:31:15.600
+Yu Cheng: So, like, actually there's a gray zone, among these three dimensions. It's not, like, black and white thing. It's also at a dimension called, model dependence, or model agnostics.
+
+182
+00:31:15.600 --> 00:31:35.110
+Yu Cheng: So, like, model-dependent, even… even though we can train a decision tree model, right, and we have different nodes and leaves, and we… we think we can expand this whole decision process of this model, but actually, some… sometimes the node, the node
+
+183
+00:31:35.110 --> 00:31:45.849
+Yu Cheng: The splitting node, to different lives is actually very rare, so that's why, that's why… that's one way you need to introduce, the…
+
+184
+00:31:46.170 --> 00:31:52.920
+Yu Cheng: model dependence or model agnostic dimension to this gray zone. So, like.
+
+185
+00:31:52.920 --> 00:32:09.739
+Yu Cheng: For decision tree model, we bump into some nodes we can't explain fully. We just use the tree sharp method to do our best to explain why the node is there. So it's like, we don't have, like, totally white
+
+186
+00:32:09.940 --> 00:32:21.129
+Yu Cheng: a white box model or black box model, even though we have a very clear white boxed, as quoted, decision tree model. We can't fully explain it.
+
+187
+00:32:21.470 --> 00:32:34.910
+Yu Cheng: And with this three-dimension, we can, like, mix other recipes, and find the specific tools out of the toolbox, and try to explain it more.
+
+188
+00:32:35.270 --> 00:32:41.200
+Yu Cheng: I think all the models is in the griddle, or we can capture them fully, yeah?
+
+189
+00:32:42.900 --> 00:32:58.090
+Mengjia Wei: Yeah, I just want to add on, like, the black… the threshold itself is not probably very critical here, like, to understand, like, whether it's a black box model or a white box model, or categorize each method into which
+
+190
+00:32:58.300 --> 00:33:06.770
+Mengjia Wei: which model category? I think the essential idea is that, the other one to understand if we,
+
+191
+00:33:07.070 --> 00:33:16.710
+Mengjia Wei: We would jump into a black box model, and what we can do, what method we can use to explain the black box model.
+
+192
+00:33:16.710 --> 00:33:39.480
+Mengjia Wei: So, the reason we call the model as a black box model is really the behavior of the model is not visible. So, for example, neural networks, right? We can see the output, but we don't know what is going on in the whole process, right? Like, what connection is important, what connection is not important, and actually boosts as well. So, how the model got turned.
+
+193
+00:33:39.480 --> 00:33:54.399
+Mengjia Wei: How the model get added up together, and we have, there is a lack of visibility here. So the method introduced by XAI is really to try to shed some light to the behavior of the model, to kind of,
+
+194
+00:33:54.400 --> 00:33:59.800
+Mengjia Wei: Mimic the behavioral model using a much simplified, model, like decision trees.
+
+195
+00:34:00.280 --> 00:34:09.189
+Mengjia Wei: And shop, for example, to try to have some level of understanding of the model, but not really be able to entirely understand it.
+
+196
+00:34:12.929 --> 00:34:14.649
+Yu Cheng: Does that make sense? Yeah.
+
+197
+00:34:15.159 --> 00:34:16.309
+Alison Manna: Yeah, thank you.
+
+198
+00:34:18.179 --> 00:34:23.399
+Will Vander Wal: I was wondering from, like, paper, and just etc, about, like.
+
+199
+00:34:23.649 --> 00:34:43.289
+Will Vander Wal: the implications of this, obviously, in professional life. Like, I know what you mentioned, like, consultants, like, need this to explain. I know the paper said, like, healthcare and finance, it's, like, very much used in, but I was wondering if you guys had thoughts on, like, what you think would be the most influential, like, professional area. Like, a data scientist working in…
+
+200
+00:34:43.339 --> 00:34:50.789
+Will Vander Wal: X industry, and where, you thought that they would use the model the most, and, like, which model, if any?
+
+201
+00:34:52.669 --> 00:34:53.879
+Will Vander Wal: If that makes sense.
+
+202
+00:34:54.380 --> 00:35:04.140
+Yu Cheng: Yeah, so… so for me, it's only the, like, 6 methods we are using. We just introduced, in our presentation, and…
+
+203
+00:35:04.810 --> 00:35:08.099
+Yu Cheng: Further, let me… could you…
+
+204
+00:35:09.410 --> 00:35:14.210
+Yu Cheng: Yeah, it's actually in this, in this background, it's…
+
+205
+00:35:16.110 --> 00:35:18.959
+Yu Cheng: Yeah, we have the PDP, ARE,
+
+206
+00:35:19.010 --> 00:35:26.429
+Yu Cheng: For the, global model. And, also, also the… actually.
+
+207
+00:35:26.430 --> 00:35:43.909
+Yu Cheng: the ICE is a detailed version of PDP, so ICE can be inserted here for… so, if we, as a data scientist, we work as a consultant, we want to expand to our employers the whole model, what's the whole model is happening.
+
+208
+00:35:43.910 --> 00:35:48.430
+Yu Cheng: I will look into these three tools, the PDP, ALE,
+
+209
+00:35:48.430 --> 00:36:07.139
+Yu Cheng: NICE. And if you want to, like, explain to your employers or your customer why this prediction, why this data point is there, I will go to the local mode, to find the integrity gradients, or sharp, or line.
+
+210
+00:36:07.340 --> 00:36:25.260
+Yu Cheng: to, like, do these explanations. So because, as data scientists, we are not, like, computer scientists. They can just train the model and sell a big money, right? But as data scientists, we have to submit a report to explain, to tell story.
+
+211
+00:36:25.310 --> 00:36:33.559
+Yu Cheng: for them. So the… the only, what's worth money is a story, it's not the model we have, right?
+
+212
+00:36:34.170 --> 00:36:39.790
+Yu Cheng: So… So Axe AI is a perfect tool for data scientists, I think.
+
+213
+00:36:42.160 --> 00:37:04.339
+Mengjia Wei: Yeah, another, another, I completely agree with Troy. Another thing that I want to add on is that even though I don't work in any of these areas, that demise and explanation, I work in, the commercial area, so we sometimes run a model, and we have, we have, we come up with the, decision, and then the next step that we do is that we always run A-B tests, right?
+
+214
+00:37:04.590 --> 00:37:21.570
+Mengjia Wei: So we use the A-B test to demonstrate whether our, decision-making through the model, is actually gonna generate, the money, the increment orders, for example, that we want. So without being able to know, like, like,
+
+215
+00:37:21.570 --> 00:37:34.140
+Mengjia Wei: without having an explanation of the model, I sometimes question the consistency of the A-B test. So, am I getting a good test result just because of the noise?
+
+216
+00:37:34.150 --> 00:37:50.880
+Mengjia Wei: whether this kind of result will be consistent in the future when I apply it on the NSIN data. So, with a level of explanation, I should… I'll be able to audit my model before running into the A-B test.
+
+217
+00:37:50.910 --> 00:38:01.949
+Mengjia Wei: So bring some kind of level of confidence there, since I already know that what I'm tweaking, in my, in my dials, to test around, so…
+
+218
+00:38:02.000 --> 00:38:04.639
+Mengjia Wei: So that's… that's another benefit.
+
+219
+00:38:07.150 --> 00:38:07.880
+Yu Cheng: So true.
+
+220
+00:38:10.860 --> 00:38:14.069
+Yu Cheng: Is there any other questions we can help?
+
+221
+00:38:15.510 --> 00:38:24.830
+Mengjia Wei: Yeah, maybe you can guess also share some of your experience, or, any feelings that don't necessarily have to be technical related. That's fine too.
+
+222
+00:38:28.020 --> 00:38:31.829
+Alison Manna: I guess an… another… sorry, was someone speaking?
+
+223
+00:38:32.350 --> 00:38:33.070
+Yu Cheng: Oh, no.
+
+224
+00:38:33.530 --> 00:38:35.140
+Yu Cheng: Okay. Okay.
+
+225
+00:38:36.360 --> 00:38:44.410
+Alison Manna: I guess there's not really, like, a concrete question here, but, just, like, another point that I think was maybe briefly raised in the paper?
+
+226
+00:38:44.530 --> 00:38:49.819
+Alison Manna: was, like, the issue of privacy with XAI, too.
+
+227
+00:38:50.170 --> 00:38:58.949
+Alison Manna: In that, like, Kind of unraveling a model to see how it works could potentially expose
+
+228
+00:39:00.900 --> 00:39:07.450
+Alison Manna: like, certain sensitive data or something that was maybe present in the training data, like, that…
+
+229
+00:39:07.550 --> 00:39:12.980
+Alison Manna: That came to mind, and I think… I'm not sure, but I think I remember seeing it in the paper.
+
+230
+00:39:13.240 --> 00:39:19.340
+Alison Manna: So, like, in healthcare, like, or something, you could have… like…
+
+231
+00:39:19.950 --> 00:39:31.619
+Alison Manna: if you are using some explainable AI technique to understand the output, and you see that, like, it was some past diagnosis of a patient that,
+
+232
+00:39:32.590 --> 00:39:42.029
+Alison Manna: that inform that output, then suddenly you've exposed that part of a patient's history that maybe is more sensitive data. Like, that kind of issue, I think, is a really…
+
+233
+00:39:42.520 --> 00:39:50.850
+Alison Manna: like, a really niche, but really important thing that… that comes up here, and that even though you do want to be able to peer into the model.
+
+234
+00:39:50.980 --> 00:39:58.480
+Alison Manna: I think in a domain like healthcare, where you have such sensitive information, I do think that's a…
+
+235
+00:39:58.600 --> 00:40:02.930
+Alison Manna: A really cool, important trade-off to… to consider.
+
+236
+00:40:03.810 --> 00:40:05.139
+Yu Cheng: Yeah, that's true.
+
+237
+00:40:05.240 --> 00:40:25.310
+Mengjia Wei: Yeah, I think one takeaway is that this XAI output is more for the internal use rather than external use, so this is really around the data scientists and other stakeholders who really demanded an explanation, rather than, you know, sharing this information out to somebody who's unrelated.
+
+238
+00:40:26.910 --> 00:40:29.700
+Alison Manna: True, yeah, that is… that is definitely important.
+
+239
+00:40:29.700 --> 00:40:48.939
+Mengjia Wei: Yeah, and also, don't forget, this is a really relatively new area, so it just got established in 2023, so a very shortly, like, there is a long way to go, for this, technology to keep developed, so maybe some regulation is also required around this area in the future.
+
+240
+00:40:49.850 --> 00:40:51.320
+Alison Manna: Absolutely.
+
+241
+00:40:58.300 --> 00:41:03.529
+Mengjia Wei: Okay, just checking the time, so we are a little bit over 14 minutes.
+
+242
+00:41:03.740 --> 00:41:04.600
+Mengjia Wei: Right?
+
+243
+00:41:04.750 --> 00:41:14.039
+Mengjia Wei: Does anybody… is there any final thought anybody want to throw out here? Any other final questions?
+
+244
+00:41:19.460 --> 00:41:20.730
+Mengjia Wei: Alright!
+
+245
+00:41:20.930 --> 00:41:28.559
+Yu Cheng: All right. If you… if you need us, like, for your presentation, you can, like, raise your hand. I will show that.
+
+246
+00:41:30.900 --> 00:41:31.800
+Yu Cheng: Okay.
+
+247
+00:41:33.600 --> 00:41:44.599
+Mengjia Wei: Okay, I think we can wrap it up here, so we're gonna, stop recording, and then we're gonna submit it over to the Canvas afterwards.
+
+248
+00:41:48.880 --> 00:41:50.369
+Alison Manna: Thank you guys, great job.
+
+249
+00:41:51.040 --> 00:41:52.380
+Erin Bevec: Thanks, guys. Thanks.
+
+250
+00:41:52.380 --> 00:41:53.589
+Alexander Garcia: Thank you. Great progress.
+
+251
+00:41:53.590 --> 00:41:54.360
+Samuel Villarreal: Thank you.
+
+252
+00:41:54.360 --> 00:41:54.940
+Alexander Garcia: Great job.
+
+253
+00:41:54.940 --> 00:41:58.309
+Mengjia Wei: Thank you, everyone, for attending. Have a good rest of the day.
+

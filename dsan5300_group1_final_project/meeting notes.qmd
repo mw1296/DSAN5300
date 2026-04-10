@@ -450,3 +450,22 @@ With resampled data to balance y classes, using all years data, recall as scorin
 ### Presentation Q&A preparation
 
 - 1. why using Linear SVC for feature selection instead of non-linear?
+
+
+### Meeting 04/10/2026
+#### Discussions
+
+1. Presentation day time
+
+2. Next steps:
+ - Part1. Description of the BNPL users. compare users vs. non-users; default vs. non-default. Graph, tables. chart
+ - Part2. Feature selection. Feature filtered based on EDA --> PCA --> Stepwise backward feature selection
+ - Part3. Modeling and model comparison: SVC, Logistic, XGBoost, NN. Experiment stack model when time allows
+ - Part4. Model output explanation:
+       - Logistic regression: coefficients and significance
+       - SVC: SHAP, LIME
+       - XGBoost: tree
+       - NN: SHAP & Integreted Gradients
+ - Part5. Discussions & Conclusions
+
+3.
